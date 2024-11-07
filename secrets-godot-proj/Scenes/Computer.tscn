@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://doeqfqx5hjh2u"]
+[gd_scene load_steps=14 format=3 uid="uid://doeqfqx5hjh2u"]
 
 [ext_resource type="Script" path="res://Scripts/computer.gd" id="1_fcb2v"]
 [ext_resource type="Texture2D" uid="uid://chs0iunw4r2as" path="res://Arts/computer_background.png" id="2_dl6al"]
@@ -9,9 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/to_do_icon.gd" id="5_rms0h"]
 [ext_resource type="Script" path="res://Scripts/file_folder_icon.gd" id="7_fewha"]
 [ext_resource type="Texture2D" uid="uid://cxheh626mgpei" path="res://Arts/computer_popup_window.png" id="9_tt7ds"]
-[ext_resource type="Script" path="res://Scripts/read_me_doc.gd" id="9_xv57d"]
+[ext_resource type="Script" path="res://Scripts/doc_reader.gd" id="9_xv57d"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="10_mcmdw"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="11_2u21f"]
+[ext_resource type="PackedScene" uid="uid://jqpc1g3p6a1t" path="res://Scenes/FileFolder.tscn" id="13_ji64b"]
 
 [node name="Computer" type="Control"]
 layout_mode = 3
@@ -107,10 +108,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 44.0
-offset_top = 44.0
-offset_right = -43.0
-offset_bottom = -29.0
+offset_left = -617.0
+offset_top = -509.0
+offset_right = -704.0
+offset_bottom = -582.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_xv57d")
@@ -172,3 +173,74 @@ offset_bottom = 54.0
 theme_override_fonts/font = ExtResource("10_mcmdw")
 theme_override_font_sizes/font_size = 54
 text = "X"
+
+[node name="ToDoDoc" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = -505.0
+offset_right = 223.0
+offset_bottom = -578.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_xv57d")
+metadata/_edit_group_ = true
+
+[node name="ReaderTexture" type="TextureRect" parent="ToDoDoc"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_tt7ds")
+
+[node name="DocTitle" type="Label" parent="ToDoDoc"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 17.0
+offset_right = 254.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("10_mcmdw")
+theme_override_font_sizes/font_size = 32
+text = "TO DO"
+
+[node name="DocText" type="RichTextLabel" parent="ToDoDoc"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = 140.0
+offset_right = -65.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("10_mcmdw")
+theme_override_font_sizes/normal_font_size = 24
+text = "ERRANDS:
+- ORGANIZE MY BOOKSHELF
+- FEED TOBY"
+
+[node name="ExitIcon" type="Control" parent="ToDoDoc"]
+anchors_preset = 0
+offset_left = 804.0
+offset_top = 8.0
+offset_right = 854.0
+offset_bottom = 57.0
+script = ExtResource("11_2u21f")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="ToDoDoc/ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("10_mcmdw")
+theme_override_font_sizes/font_size = 54
+text = "X"
+
+[node name="FileFolder" parent="." instance=ExtResource("13_ji64b")]
+position = Vector2(1235, -504)

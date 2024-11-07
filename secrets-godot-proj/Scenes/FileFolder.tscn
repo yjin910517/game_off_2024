@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=3 uid="uid://jqpc1g3p6a1t"]
+
+[ext_resource type="Script" path="res://Scripts/password_input_box.gd" id="1_0kbx2"]
+[ext_resource type="Texture2D" uid="uid://cxheh626mgpei" path="res://Arts/computer_popup_window.png" id="1_76pe0"]
+[ext_resource type="Script" path="res://Scripts/file_folder.gd" id="1_eq5wo"]
+[ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="2_osx87"]
+[ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="3_gmnex"]
+[ext_resource type="Script" path="res://Scripts/folder_content.gd" id="6_rfctb"]
+
+[node name="FileFolder" type="Node2D"]
+script = ExtResource("1_eq5wo")
+metadata/_edit_group_ = true
+
+[node name="PasswordInputBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 873.0
+offset_bottom = 467.0
+script = ExtResource("1_0kbx2")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="PasswordInputBox"]
+layout_mode = 0
+offset_right = 873.0
+offset_bottom = 467.0
+color = Color(0, 0.0705882, 0.0980392, 0.729412)
+
+[node name="WindowBox" type="TextureRect" parent="PasswordInputBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -146.0
+offset_right = 200.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_76pe0")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Prompt" type="Label" parent="PasswordInputBox"]
+layout_mode = 0
+offset_left = 307.0
+offset_top = 189.0
+offset_right = 549.0
+offset_bottom = 214.0
+theme_override_fonts/font = ExtResource("2_osx87")
+theme_override_font_sizes/font_size = 20
+text = "Access Code:"
+
+[node name="PWInput" type="LineEdit" parent="PasswordInputBox"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 221.0
+offset_right = 581.0
+offset_bottom = 258.0
+theme_override_fonts/font = ExtResource("2_osx87")
+placeholder_text = ">"
+secret = true
+
+[node name="FeedbackMsg" type="Label" parent="PasswordInputBox"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 268.0
+offset_right = 579.0
+offset_bottom = 302.0
+text = "feedback msg placeholder"
+
+[node name="ExitIcon" type="Control" parent="PasswordInputBox"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 604.0
+offset_top = 96.0
+offset_right = 636.0
+offset_bottom = 129.0
+script = ExtResource("3_gmnex")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="PasswordInputBox/ExitIcon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_osx87")
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="FolderContent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 688.0
+offset_top = 265.0
+offset_right = 688.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rfctb")
+metadata/_edit_group_ = true
+
+[node name="FolderTexture" type="TextureRect" parent="FolderContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 873.0
+offset_bottom = 467.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_76pe0")
+
+[node name="FolderTitle" type="Label" parent="FolderContent"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 17.0
+offset_right = 254.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_osx87")
+theme_override_font_sizes/font_size = 32
+text = "FILES"
+
+[node name="FolderText" type="RichTextLabel" parent="FolderContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = 140.0
+offset_right = 808.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("2_osx87")
+theme_override_font_sizes/normal_font_size = 24
+text = "[REPLACE WITH FILE UI NODES]"
+
+[node name="ExitIcon" type="Control" parent="FolderContent"]
+anchors_preset = 0
+offset_left = 804.0
+offset_top = 8.0
+offset_right = 854.0
+offset_bottom = 57.0
+script = ExtResource("3_gmnex")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="FolderContent/ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_osx87")
+theme_override_font_sizes/font_size = 54
+text = "X"
