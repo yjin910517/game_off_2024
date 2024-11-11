@@ -8,7 +8,7 @@ extends Control
 @onready var to_do_doc = $ToDoDoc
 @onready var file_folder = $FileFolder
 
-const DOC_WINDOW_POS = Vector2(44, 44)
+const DOC_WINDOW_POS = Vector2(43, 44)
 
 
 # Called when the node enters the scene tree for the first time.

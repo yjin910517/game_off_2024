@@ -14,15 +14,18 @@ metadata/_edit_group_ = true
 [node name="PasswordInputBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 873.0
-offset_bottom = 467.0
+offset_right = 876.0
+offset_bottom = 470.0
 script = ExtResource("1_0kbx2")
 metadata/_edit_group_ = true
 
 [node name="Background" type="ColorRect" parent="PasswordInputBox"]
-layout_mode = 0
-offset_right = 873.0
-offset_bottom = 467.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0.0705882, 0.0980392, 0.729412)
 
 [node name="WindowBox" type="TextureRect" parent="PasswordInputBox"]

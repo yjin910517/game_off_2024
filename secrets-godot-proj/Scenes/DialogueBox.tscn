@@ -1,10 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://p22wckqd2lqp"]
+[gd_scene load_steps=10 format=3 uid="uid://p22wckqd2lqp"]
 
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="1_72sas"]
 [ext_resource type="Script" path="res://Scripts/dialogue_box.gd" id="1_nom6x"]
 [ext_resource type="Script" path="res://Scripts/action_button.gd" id="2_f3hsb"]
 [ext_resource type="Texture2D" uid="uid://bxjpv2prqhgpb" path="res://Arts/dialogue_box.png" id="2_lv1ma"]
 [ext_resource type="Script" path="res://Scripts/dialogue_exit_button.gd" id="3_ih5ma"]
+[ext_resource type="Texture2D" uid="uid://bdgyqmwtkvoty" path="res://Arts/dialogue_continue_icon.png" id="6_m12qh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orydr"]
+atlas = ExtResource("6_m12qh")
+region = Rect2(0, 0, 30, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p4jf"]
+atlas = ExtResource("6_m12qh")
+region = Rect2(30, 0, 30, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32rdw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orydr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p4jf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="DialogueBox" type="Control"]
 layout_mode = 3
@@ -92,6 +115,13 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("1_72sas")
 theme_override_font_sizes/font_size = 18
 text = ">"
+
+[node name="ContinueIcon" type="AnimatedSprite2D" parent="UIBox"]
+position = Vector2(720, 80)
+sprite_frames = SubResource("SpriteFrames_32rdw")
+autoplay = "default"
+frame = 1
+frame_progress = 0.925292
 
 [node name="TransparentShield" type="ColorRect" parent="."]
 layout_mode = 1
