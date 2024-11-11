@@ -12,12 +12,13 @@ extends Node2D
 @onready var bowl_control = $BowlControl
 @onready var passport_callout = $PassportCallout
 
-# dialogue box node
+# reusable info scenes
 @onready var dialogue_box = $DialogueBox
-# milestone scene node
 @onready var milestone_scene = $Milestone
-# passport scene node
-@onready var passport = $PassportContent
+
+# object scenes
+@onready var passport = $PassportContent 
+@onready var globe_map = $GlobeMap
 
 
 
@@ -26,8 +27,7 @@ var toby_fed = false
 var passport_found = false
 var disk_acquired = false # not happen in this node
 var disk_played = false
-var globe_activated = false
-var globe_opened = false
+var has_globe_key = false
 var has_vault_key = false
 var vault_opened = false
 
@@ -41,7 +41,16 @@ var dialogue_dataset = {
 	"container": {
 		"text_data": "A box of cat food for Toby.",
 		"btn_data": {"label": "Add Food", "value": "feed"}
-	}
+	},
+	"inactive_globe": {
+		"text_data": "A globe with world map on it. The surface seems to be a touch screen."
+	},
+	"globe_activation": {
+		"text_data": "The gadget worked on the globe. Now the touch screen has been swtiched on."
+	},
+	"globe_unlock": {
+		"text_data": "The globe starts making sound. A lock clicked sound. Is it a lockbox?"
+	},
 }
 
 var milestone_dataset = {
@@ -74,19 +83,26 @@ func _ready():
 	dialogue_box.connect("chosen_action", Callable(self, "_on_dialogue_action_chosen"))
 	dialogue_box.connect("open_milestone", Callable(self, "_on_open_milestone"))
 	dialogue_box.position = Vector2(0,0)
-	dialogue_box.z_index = 2
+	dialogue_box.z_index = 2 # already set in node inspector, otherwise need render again
 	dialogue_box.hide()
 
 	# Milestone scene
-	milestone_scene.connect("milestone_completed", Callable(self, "_on_milestone_completed"))
+	milestone_scene.connect("milestone_completed", Callable(self, "_on_dialogue_action_chosen"))
 	milestone_scene.position = Vector2(0,0)
-	milestone_scene.z_index = 1
+	milestone_scene.z_index = 1 # already set in node inspector
 	milestone_scene.hide()
 
 	# Passport scene
 	passport.position = Vector2(0,0)
-	passport.z_index = 1
+	passport.z_index = 1 # already set in node inspector
 	passport.hide()
+	
+	# Globe map scene
+	globe_map.connect("globe_unlocked", Callable(self, "_on_globe_unlocked"))
+	globe_map.position = Vector2(0,0)
+	globe_map.z_index = 1 # already set in node inspector
+	globe_map.hide()
+
 
 # Handle action signals from dialogue
 func _on_dialogue_action_chosen(action_name):
@@ -98,37 +114,40 @@ func _on_dialogue_action_chosen(action_name):
 		# animation play
 		# disable click with shield
 		# show story scene to reveal notes in container
+		
+	if action_name == "passport":
+		passport_found = true
+		passport_callout.show()
+		passport.show()
 
 
 # Display milestone page
 func _on_open_milestone(milestone_name):
 		
-		# reformat milestone data
-		var milestone_data = milestone_dataset[milestone_name]
-		milestone_data["name"] = milestone_name
-		milestone_data["btn_data"] = {"label": milestone_data["btn_label"], "value": milestone_name}
+		# show the standard milestone scene
+		if milestone_name in ("passport"):
+			# reformat milestone data
+			var milestone_data = milestone_dataset[milestone_name]
+			milestone_data["name"] = milestone_name
+			milestone_data["btn_data"] = {"label": milestone_data["btn_label"], "value": milestone_name}
+			
+			# show milestone scene
+			milestone_scene.update_display(milestone_data)
 		
-		# show milestone scene
-		milestone_scene.update_display(milestone_data)
-		
+		# show the custom reaction or scene
+		if milestone_name == "globe_unlock":
+			globe_map.open_globe()
+			
 		# reset dialogue box associated milestone
 		dialogue_box.associated_milestone = null
-
-
-# Handle all milestone completions
-func _on_milestone_completed(milestone_name):
-	print("completed milestone ", milestone_name)
-	if milestone_name == "passport":
-		passport_found = true
-		passport_callout.show()
-		passport.show()
 	
 
 func _on_computer_clicked():
 	pass
 
 func _on_calendar_clicked():
-	pass
+	# test only
+	has_globe_key = true
 	
 func _on_vault_clicked():
 	pass
@@ -153,14 +172,35 @@ func _on_show_book_info(info_text):
 			
 	
 func _on_globe_clicked():
-	pass
+	if globe_map.status == 1: # inactive enum
+		var info_text
+		if has_globe_key:
+			globe_map.activate_globe()
+			info_text = dialogue_dataset["globe_activation"]["text_data"]
+		else: 
+			info_text = dialogue_dataset["inactive_globe"]["text_data"]
+			
+		globe_map.display_scene()
+		dialogue_box.display_dialogue(info_text, null)
+	else:
+		globe_map.display_scene()
+
+
+func _on_globe_unlocked():
 	
+	dialogue_box.associated_milestone = "globe_unlock"
+	var info_text = dialogue_dataset["globe_unlock"]["text_data"]
+	dialogue_box.display_dialogue(info_text, null)
+
+
 func _on_book_pile_clicked():
 	pass
 	
+	
 func _on_projector_clicked():
 	pass
-	
+
+
 func _on_food_container_clicked():
 	# check fed or not
 	if toby_fed:

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bu88mnlkp2i7f" path="res://Arts/passport_milestone_icon.png" id="3_yrykp"]
 
 [node name="Milestone" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +25,7 @@ grow_vertical = 2
 color = Color(0, 0.0705882, 0.0980392, 1)
 
 [node name="InfoText" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 44.0
 offset_top = 45.0
 offset_right = 937.0

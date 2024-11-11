@@ -30,6 +30,7 @@ animations = [{
 }]
 
 [node name="DialogueBox" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
