@@ -1,5 +1,9 @@
 extends Node2D
 
+
+signal navigate_to_park()
+
+
 # children node references
 @onready var computer_control = $ComputerControl
 @onready var calendar_control = $CalendarControl
@@ -11,6 +15,7 @@ extends Node2D
 @onready var food_container_control = $FoodContainerControl
 @onready var bowl_control = $BowlControl
 @onready var passport_callout = $PassportCallout
+@onready var park_nav = $ParkNav
 
 # util node (action blocker, etc)
 @onready var shield = $TransparentShield
@@ -97,6 +102,9 @@ func _ready():
 	
 	passport_callout.connect("passport_callout_clicked", Callable(self, "_on_passport_callout_clicked"))
 	passport_callout.hide()
+
+	park_nav.connect("navigation_clicked", Callable(self, "_on_navigation_clicked"))
+	park_nav.hide()
 	
 	# Action block shield
 	shield.color = Color("#ffffff00")
@@ -133,7 +141,12 @@ func _ready():
 	projector.position = Vector2(0,0)
 	projector.z_index = 1 # already set in node inspector
 	projector.hide()
-	
+
+
+func _on_navigation_clicked():
+	emit_signal("navigate_to_park")
+	hide()
+		
 
 # Handle action signals from dialogue
 func _on_dialogue_action_chosen(action_name):
@@ -161,8 +174,7 @@ func _on_dialogue_action_chosen(action_name):
 		disk_acquired = true
 	
 	if action_name == "park":
-		print("Let's go to the park")
-		emit_signal("visit_park") # to do: change main node bgm?
+		emit_signal("navigate_to_park")
 		hide()
 		
 
@@ -183,7 +195,7 @@ func _on_open_milestone(milestone_name):
 		if milestone_name == "projector":
 			projector.milestone_name = "park"
 			projector.show()
-			# to do: show go to park navigation in room
+			park_nav.show()
 		
 		if milestone_name == "globe_unlock":
 			globe_map.open_globe()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csvyfdimksl8c"]
+[gd_scene load_steps=19 format=3 uid="uid://csvyfdimksl8c"]
 
 [ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_445ye"]
 [ext_resource type="Script" path="res://Scripts/mountain_park.gd" id="1_iruct"]
@@ -10,6 +10,13 @@
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_2niwr"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_ibwwn"]
 [ext_resource type="Texture2D" uid="uid://uia6mu3krgxr" path="res://Arts/park_zoom_in_sign.png" id="7_8w26x"]
+[ext_resource type="Texture2D" uid="uid://d1suh781gr730" path="res://Arts/park_zoom_in_picnic.png" id="11_elvs2"]
+[ext_resource type="Script" path="res://Scripts/scene_nav.gd" id="12_bfrqh"]
+[ext_resource type="Texture2D" uid="uid://76m64638ebt7" path="res://Arts/nav_icon_right.png" id="13_607sn"]
+[ext_resource type="Texture2D" uid="uid://cnhnrbq3gkayj" path="res://Arts/park_zoom_in_bench.png" id="14_8k5ob"]
+[ext_resource type="Script" path="res://Scripts/park_find.gd" id="15_8mstf"]
+[ext_resource type="Texture2D" uid="uid://bu88mnlkp2i7f" path="res://Arts/passport_milestone_icon.png" id="16_umwnq"]
+[ext_resource type="Script" path="res://Scripts/action_button.gd" id="17_jp8hv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_edpmx"]
 animations = [{
@@ -33,6 +40,33 @@ offset_right = 960.0
 offset_bottom = 540.0
 texture = ExtResource("1_445ye")
 stretch_mode = 5
+
+[node name="HomeNav" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 738.0
+offset_top = 28.0
+offset_right = 931.0
+offset_bottom = 66.0
+script = ExtResource("12_bfrqh")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="HomeNav"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 10.0
+offset_right = 192.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.0392157, 0.576471, 0.588235, 1)
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 20
+text = "Go Home"
+
+[node name="NavIcon" type="TextureRect" parent="HomeNav"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_607sn")
 
 [node name="EntryControl" type="Control" parent="."]
 layout_mode = 3
@@ -225,7 +259,7 @@ offset_left = 70.0
 offset_top = 251.0
 offset_right = 550.0
 offset_bottom = 540.0
-texture = ExtResource("7_8w26x")
+texture = ExtResource("11_elvs2")
 stretch_mode = 5
 
 [node name="BenchZoom" type="Control" parent="."]
@@ -283,5 +317,135 @@ offset_left = 214.0
 offset_top = 251.0
 offset_right = 694.0
 offset_bottom = 540.0
-texture = ExtResource("7_8w26x")
+texture = ExtResource("14_8k5ob")
 stretch_mode = 5
+
+[node name="FindZoom" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1257.0
+offset_top = -314.0
+offset_right = 2217.0
+offset_bottom = 226.0
+script = ExtResource("15_8mstf")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="FindZoom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 0.996078)
+
+[node name="ZoomTexture" type="TextureRect" parent="FindZoom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_8k5ob")
+stretch_mode = 5
+
+[node name="FindControl" type="Control" parent="FindZoom"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 326.0
+offset_top = 378.0
+offset_right = 388.0
+offset_bottom = 425.0
+script = ExtResource("2_tuhbk")
+
+[node name="HoverRect" type="ColorRect" parent="FindZoom/FindControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_jwx1c")
+
+[node name="HighlightIcon" type="AnimatedSprite2D" parent="FindZoom/FindControl"]
+position = Vector2(30, 23)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_edpmx")
+frame_progress = 0.0234124
+
+[node name="ParkMilestone" type="Control" parent="FindZoom"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 587.0
+offset_top = 300.0
+offset_right = 1547.0
+offset_bottom = 840.0
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="FindZoom/ParkMilestone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 1)
+
+[node name="InfoText" type="RichTextLabel" parent="FindZoom/ParkMilestone"]
+offset_left = 44.0
+offset_top = 45.0
+offset_right = 937.0
+offset_bottom = 214.0
+theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("6_ibwwn")
+theme_override_font_sizes/normal_font_size = 24
+text = "There is a small container hidden under the bench. 
+
+Is it some kind of power gadget for the globe at home?"
+
+[node name="IconDisplay" type="TextureRect" parent="FindZoom/ParkMilestone"]
+offset_left = 405.0
+offset_top = 234.0
+offset_right = 522.0
+offset_bottom = 400.0
+texture = ExtResource("16_umwnq")
+stretch_mode = 5
+
+[node name="ActionButton" type="Control" parent="FindZoom/ParkMilestone"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 434.0
+offset_right = 779.0
+offset_bottom = 477.0
+script = ExtResource("17_jp8hv")
+metadata/_edit_group_ = true
+
+[node name="ActionText" type="Label" parent="FindZoom/ParkMilestone/ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 544.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 32
+text = "Take item & Go home"
+
+[node name="OptionHighlight" type="Label" parent="FindZoom/ParkMilestone/ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 32
+text = ">"
