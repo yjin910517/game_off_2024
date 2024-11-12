@@ -1,0 +1,287 @@
+[gd_scene load_steps=12 format=3 uid="uid://csvyfdimksl8c"]
+
+[ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_445ye"]
+[ext_resource type="Script" path="res://Scripts/mountain_park.gd" id="1_iruct"]
+[ext_resource type="Texture2D" uid="uid://chw6j7s5i46bk" path="res://Arts/highlight_marker1.png" id="2_66f3m"]
+[ext_resource type="Script" path="res://Scripts/park_control.gd" id="2_tuhbk"]
+[ext_resource type="Texture2D" uid="uid://be630yplctmua" path="res://Arts/highlight_marker2.png" id="3_odxkx"]
+[ext_resource type="Script" path="res://Scripts/hover_rect.gd" id="4_jwx1c"]
+[ext_resource type="Script" path="res://Scripts/park_zoom.gd" id="4_xk6mk"]
+[ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_2niwr"]
+[ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_ibwwn"]
+[ext_resource type="Texture2D" uid="uid://uia6mu3krgxr" path="res://Arts/park_zoom_in_sign.png" id="7_8w26x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edpmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_odxkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_66f3m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="MountainPark" type="Node2D"]
+script = ExtResource("1_iruct")
+
+[node name="ParkLandscape" type="TextureRect" parent="."]
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("1_445ye")
+stretch_mode = 5
+
+[node name="EntryControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 746.0
+offset_top = 454.0
+offset_right = 856.0
+offset_bottom = 513.0
+script = ExtResource("2_tuhbk")
+metadata/_edit_group_ = true
+
+[node name="HoverRect" type="ColorRect" parent="EntryControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_jwx1c")
+
+[node name="HighlightIcon" type="AnimatedSprite2D" parent="EntryControl"]
+position = Vector2(13, 47)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_edpmx")
+frame_progress = 0.0234124
+
+[node name="PicnicControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 270.0
+offset_top = 394.0
+offset_right = 343.0
+offset_bottom = 453.0
+script = ExtResource("2_tuhbk")
+metadata/_edit_group_ = true
+
+[node name="HoverRect" type="ColorRect" parent="PicnicControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_jwx1c")
+
+[node name="HighlightIcon" type="AnimatedSprite2D" parent="PicnicControl"]
+position = Vector2(58, 12)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_edpmx")
+frame_progress = 0.0234124
+
+[node name="BenchControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 462.0
+offset_top = 189.0
+offset_right = 542.0
+offset_bottom = 230.0
+script = ExtResource("2_tuhbk")
+metadata/_edit_group_ = true
+
+[node name="HoverRect" type="ColorRect" parent="BenchControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_jwx1c")
+
+[node name="HighlightIcon" type="AnimatedSprite2D" parent="BenchControl"]
+position = Vector2(9, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_edpmx")
+frame_progress = 0.0234124
+
+[node name="EntryZoom" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 237.0
+offset_top = 564.0
+offset_right = 1197.0
+offset_bottom = 1104.0
+script = ExtResource("4_xk6mk")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="EntryZoom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 0.996078)
+
+[node name="ExitIcon" type="Control" parent="EntryZoom"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 899.0
+offset_top = 18.0
+offset_right = 949.0
+offset_bottom = 67.0
+script = ExtResource("5_2niwr")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="EntryZoom/ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 54
+text = "X"
+
+[node name="InfoText" type="RichTextLabel" parent="EntryZoom"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 79.0
+offset_right = 880.0
+offset_bottom = 209.0
+theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_ibwwn")
+theme_override_font_sizes/normal_font_size = 20
+text = "The moment we stepped through here, the rest of the world didn’t matter. It was just us and the quiet, the way she liked it."
+
+[node name="ZoomTexture" type="TextureRect" parent="EntryZoom"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 217.0
+offset_right = 842.0
+offset_bottom = 506.0
+texture = ExtResource("7_8w26x")
+stretch_mode = 5
+
+[node name="PicnicZoom" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1010.0
+offset_top = 334.0
+offset_right = -50.0
+offset_bottom = 874.0
+script = ExtResource("4_xk6mk")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="PicnicZoom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 0.996078)
+
+[node name="ExitIcon" type="Control" parent="PicnicZoom"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 899.0
+offset_top = 18.0
+offset_right = 949.0
+offset_bottom = 67.0
+script = ExtResource("5_2niwr")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="PicnicZoom/ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 54
+text = "X"
+
+[node name="InfoText" type="RichTextLabel" parent="PicnicZoom"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 67.0
+offset_right = 880.0
+offset_bottom = 225.0
+theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_ibwwn")
+theme_override_font_sizes/normal_font_size = 20
+text = "We’d spread a blanket right here, the grass soft under us and the sunlight warm on our faces. She loved this spot, especially when the wildflowers were in bloom. "
+
+[node name="ZoomTexture" type="TextureRect" parent="PicnicZoom"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 251.0
+offset_right = 550.0
+offset_bottom = 540.0
+texture = ExtResource("7_8w26x")
+stretch_mode = 5
+
+[node name="BenchZoom" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 86.0
+offset_top = -589.0
+offset_right = 1046.0
+offset_bottom = -49.0
+script = ExtResource("4_xk6mk")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="BenchZoom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 0.996078)
+
+[node name="ExitIcon" type="Control" parent="BenchZoom"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 899.0
+offset_top = 18.0
+offset_right = 949.0
+offset_bottom = 67.0
+script = ExtResource("5_2niwr")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="BenchZoom/ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("6_ibwwn")
+theme_override_font_sizes/font_size = 54
+text = "X"
+
+[node name="InfoText" type="RichTextLabel" parent="BenchZoom"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 67.0
+offset_right = 880.0
+offset_bottom = 225.0
+theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_ibwwn")
+theme_override_font_sizes/normal_font_size = 20
+text = "We’d sit here for hours, talking about everything or nothing at all. The view stretched forever, but all I ever cared about was how she looked at it, her hand resting in mine."
+
+[node name="ZoomTexture" type="TextureRect" parent="BenchZoom"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 251.0
+offset_right = 694.0
+offset_bottom = 540.0
+texture = ExtResource("7_8w26x")
+stretch_mode = 5

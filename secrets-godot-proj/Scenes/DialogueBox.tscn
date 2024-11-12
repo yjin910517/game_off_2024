@@ -118,13 +118,14 @@ theme_override_font_sizes/font_size = 18
 text = ">"
 
 [node name="ContinueIcon" type="AnimatedSprite2D" parent="UIBox"]
-position = Vector2(720, 80)
+position = Vector2(750, 90)
 sprite_frames = SubResource("SpriteFrames_32rdw")
 autoplay = "default"
 frame = 1
 frame_progress = 0.925292
 
 [node name="TransparentShield" type="ColorRect" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

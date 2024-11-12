@@ -4,18 +4,20 @@ extends Control
 signal passport_box_found(info_text)
 signal show_book_info(info_text)
 
+
 var info_dataset = [
-	"secret box info", # use zero index to store special info text
-	"book 1 intro",
-	"book 2 intro",
-	"book 3 intro",
-	"book 4 intro",
-	"book 5 intro",
-	"book 6 intro",
-	"book 7 intro",
+	"???", # use zero index to store special info text for secrete pox
+	"<Fragments of the Soul>\nElysia loved this book. She’d read a poem out loud to me sometimes, her voice soft, almost like she was letting me in on a secret.",
+	"<The Lost Cultures of Serelva>\nShe used to say Serelva felt like a part of her, even though she’d only been there a few times.",
+	"<Whispers of the Endless Sky>\nA poetic exploration of the cosmos and humanity’s eternal fascination with the stars.",
+	null,
+	"<The Traveler’s Journal: Tales from the Edge of the World>\nA vibrant anthology of travel stories from remote corners of the globe.",
+	"<The Key to Every Door>\nA book of riddles and puzzles, of course. Elysia loved how it made her think, but what she loved more was solving them together with me.",
+	"<Wonders Beneath the Waves>\nThis is my book. She read it so we could talk about my work, and I loved how excited she got about things I thought were just…normal.",
 ]
 
 const secret_box_id = 4
+
 
 func _ready():
 	var book_nodes = get_children()

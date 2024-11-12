@@ -1,0 +1,180 @@
+[gd_scene load_steps=10 format=3 uid="uid://ce35uuxi5fq6j"]
+
+[ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="1_bsbab"]
+[ext_resource type="Script" path="res://Scripts/projector.gd" id="1_nevjg"]
+[ext_resource type="Texture2D" uid="uid://c2vi2cma3uk3a" path="res://Arts/video_footage1.png" id="2_5oyfd"]
+[ext_resource type="Texture2D" uid="uid://dewsaijagxjm" path="res://Arts/video_footage2.png" id="3_q7fom"]
+[ext_resource type="Texture2D" uid="uid://dutdmid8t4ij6" path="res://Arts/video_footage3.png" id="4_35giy"]
+[ext_resource type="Texture2D" uid="uid://dkqpkk4fi1j6a" path="res://Arts/video_footage4.png" id="5_pxxmy"]
+[ext_resource type="Script" path="res://Scripts/action_button.gd" id="6_vyly5"]
+[ext_resource type="Script" path="res://Scripts/dialogue_exit_button.gd" id="7_pahil"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttqak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5oyfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q7fom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5oyfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q7fom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5oyfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q7fom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5oyfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q7fom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_35giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxxmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_35giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxxmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_35giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxxmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_35giy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxxmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Projector" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nevjg")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0705882, 0.0980392, 1)
+
+[node name="InfoText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 45.0
+offset_right = 937.0
+offset_bottom = 178.0
+theme_override_colors/default_color = Color(0.623529, 1, 0.796078, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("1_bsbab")
+theme_override_font_sizes/normal_font_size = 20
+text = "It's a video taken in our favorite mountain park nearby. Elysia said in the video: \"Come to the park, to our secret dating place on the mountain top.\"
+"
+
+[node name="VideoFootage" type="AnimatedSprite2D" parent="."]
+position = Vector2(468, 291)
+scale = Vector2(2.346, 2)
+sprite_frames = SubResource("SpriteFrames_ttqak")
+frame_progress = 0.844454
+
+[node name="ActionButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 450.0
+offset_right = 449.0
+offset_bottom = 493.0
+script = ExtResource("6_vyly5")
+metadata/_edit_group_ = true
+
+[node name="ActionText" type="Label" parent="ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 544.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_bsbab")
+theme_override_font_sizes/font_size = 24
+text = "Go To The Park
+"
+
+[node name="OptionHighlight" type="Label" parent="ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_bsbab")
+theme_override_font_sizes/font_size = 24
+text = ">"
+
+[node name="LaterButton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 720.0
+offset_top = 450.0
+offset_right = 885.0
+offset_bottom = 493.0
+script = ExtResource("7_pahil")
+metadata/_edit_group_ = true
+
+[node name="LaterText" type="Label" parent="LaterButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 146.0
+offset_bottom = 16.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_bsbab")
+theme_override_font_sizes/font_size = 24
+text = "Later
+"
+
+[node name="OptionHighlight" type="Label" parent="LaterButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_bsbab")
+theme_override_font_sizes/font_size = 24
+text = ">"

@@ -20,6 +20,7 @@ func _ready() -> void:
 	action_button.connect("action_clicked", Callable(self, "_on_action_clicked"))
 	later_button.connect("exit_clicked", Callable(self, "_on_exit_clicked"))
 	shield_layer.connect("gui_input", Callable(self, "_on_shield_gui_input"))
+	
 	shield_layer.color = Color("#ffffff00")
 
 
@@ -65,7 +66,7 @@ func _show_action_ui():
 func _hide_action_ui():
 	action_ui_box.hide()
 	# longer text box to fill the space
-	info_text_box.size.x = 620
+	info_text_box.size.x = 800
 
 
 func _update_info_text(text_data):

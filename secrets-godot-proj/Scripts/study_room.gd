@@ -12,6 +12,9 @@ extends Node2D
 @onready var bowl_control = $BowlControl
 @onready var passport_callout = $PassportCallout
 
+# util node (action blocker, etc)
+@onready var shield = $TransparentShield
+
 # reusable info scenes
 @onready var dialogue_box = $DialogueBox
 @onready var milestone_scene = $Milestone
@@ -19,7 +22,7 @@ extends Node2D
 # object scenes
 @onready var passport = $PassportContent 
 @onready var globe_map = $GlobeMap
-
+@onready var projector = $Projector
 
 
 # key game progress flags
@@ -29,7 +32,6 @@ var disk_acquired = false # not happen in this node
 var disk_played = false
 var has_globe_key = false
 var has_vault_key = false
-var vault_opened = false
 
 
 # dialogue data
@@ -41,6 +43,15 @@ var dialogue_dataset = {
 	"container": {
 		"text_data": "A box of cat food for Toby.",
 		"btn_data": {"label": "Add Food", "value": "feed"}
+	},
+	"projector_no_disk": {
+		"text_data": "An old-fashion disk player. You can insert compatible memory disk and view content."
+	},	
+	"disk": {
+		"text_data": "Hmm, there is something on the lid."
+	},
+	"projector_disk": {
+		"text_data": "I can use it to play the disk I just found."
 	},
 	"inactive_globe": {
 		"text_data": "A globe with world map on it. The surface seems to be a touch screen."
@@ -57,9 +68,17 @@ var milestone_dataset = {
 	"passport":{
 		"text": "This book feels different.\n\nIt is not a book. It is a disguised box.\n\nElysia keeps her passport in it.\n\nNow I remember it. ",
 		"icon_texture": load("res://Arts/passport_milestone_icon.png"),
-		"btn_label": "Open E's Passport!"
-	}
+		"btn_label": "Open E's Passport",
+		"margin": 214 # the position.x value of button
+	},
+	"disk":{
+		"text": "There is an envelope sticked to the lid.\n\nInside is an old memory disk.\n\nCan be played on the projector.",
+		"icon_texture": load("res://Arts/disk_icon.png"),
+		"btn_label": "Take disk & Continue",
+		"margin": 160 # the position.x value of button
+	},	
 }
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,11 +98,17 @@ func _ready():
 	passport_callout.connect("passport_callout_clicked", Callable(self, "_on_passport_callout_clicked"))
 	passport_callout.hide()
 	
+	# Action block shield
+	shield.color = Color("#ffffff00")
+	shield.position = Vector2(0,0)
+	shield.z_index = 2 # already set in node inspector
+	shield.hide()
+	
 	# Dialogue box
 	dialogue_box.connect("chosen_action", Callable(self, "_on_dialogue_action_chosen"))
 	dialogue_box.connect("open_milestone", Callable(self, "_on_open_milestone"))
 	dialogue_box.position = Vector2(0,0)
-	dialogue_box.z_index = 2 # already set in node inspector, otherwise need render again
+	dialogue_box.z_index = 2 # already set in node inspector
 	dialogue_box.hide()
 
 	# Milestone scene
@@ -102,7 +127,13 @@ func _ready():
 	globe_map.position = Vector2(0,0)
 	globe_map.z_index = 1 # already set in node inspector
 	globe_map.hide()
-
+	
+	# Projector scene
+	projector.connect("milestone_completed", Callable(self, "_on_dialogue_action_chosen"))
+	projector.position = Vector2(0,0)
+	projector.z_index = 1 # already set in node inspector
+	projector.hide()
+	
 
 # Handle action signals from dialogue
 func _on_dialogue_action_chosen(action_name):
@@ -111,21 +142,35 @@ func _on_dialogue_action_chosen(action_name):
 		toby_fed = true
 		bowl_control.add_food()
 		food_container_control.pour_food()
-		# animation play
-		# disable click with shield
-		# show story scene to reveal notes in container
+		# to do: animation & sound
+		shield.show()
+		await get_tree().create_timer(3).timeout
+		shield.hide()
+		
+		# show dialogue that leads to milestone scene of disk discovery
+		dialogue_box.associated_milestone = "disk"
+		var info_text = dialogue_dataset["disk"]["text_data"]
+		dialogue_box.display_dialogue(info_text, null)
 		
 	if action_name == "passport":
 		passport_found = true
 		passport_callout.show()
 		passport.show()
 
+	if action_name == "disk":
+		disk_acquired = true
+	
+	if action_name == "park":
+		print("Let's go to the park")
+		emit_signal("visit_park") # to do: change main node bgm?
+		hide()
+		
 
 # Display milestone page
 func _on_open_milestone(milestone_name):
 		
 		# show the standard milestone scene
-		if milestone_name in ("passport"):
+		if milestone_name == "passport" or milestone_name == "disk":
 			# reformat milestone data
 			var milestone_data = milestone_dataset[milestone_name]
 			milestone_data["name"] = milestone_name
@@ -135,6 +180,11 @@ func _on_open_milestone(milestone_name):
 			milestone_scene.update_display(milestone_data)
 		
 		# show the custom reaction or scene
+		if milestone_name == "projector":
+			projector.milestone_name = "park"
+			projector.show()
+			# to do: show go to park navigation in room
+		
 		if milestone_name == "globe_unlock":
 			globe_map.open_globe()
 			
@@ -149,9 +199,7 @@ func _on_calendar_clicked():
 	# test only
 	has_globe_key = true
 	
-func _on_vault_clicked():
-	pass
-	
+
 func _on_passport_box_found(info_text):
 
 	if passport_found:
@@ -167,39 +215,9 @@ func _on_passport_callout_clicked():
 	passport.show()
 
 
-func _on_show_book_info(info_text):
-	dialogue_box.display_dialogue(info_text, null)
-			
-	
-func _on_globe_clicked():
-	if globe_map.status == 1: # inactive enum
-		var info_text
-		if has_globe_key:
-			globe_map.activate_globe()
-			info_text = dialogue_dataset["globe_activation"]["text_data"]
-		else: 
-			info_text = dialogue_dataset["inactive_globe"]["text_data"]
-			
-		globe_map.display_scene()
-		dialogue_box.display_dialogue(info_text, null)
-	else:
-		globe_map.display_scene()
-
-
-func _on_globe_unlocked():
-	
-	dialogue_box.associated_milestone = "globe_unlock"
-	var info_text = dialogue_dataset["globe_unlock"]["text_data"]
-	dialogue_box.display_dialogue(info_text, null)
-
-
 func _on_book_pile_clicked():
 	pass
 	
-	
-func _on_projector_clicked():
-	pass
-
 
 func _on_food_container_clicked():
 	# check fed or not
@@ -229,3 +247,53 @@ func _on_food_bowl_clicked():
 			dialogue_box.display_dialogue(text_data, btn_data)
 		else:
 			dialogue_box.display_dialogue(text_data, null)
+
+
+func _on_projector_clicked():
+	var info_text
+	if disk_acquired:
+		# show dialogue if this is the first time playing video
+		if disk_played == false:
+			dialogue_box.associated_milestone = "projector"
+			info_text = dialogue_dataset["projector_disk"]["text_data"]
+			dialogue_box.display_dialogue(info_text, null)
+			disk_played = true
+			
+		# otherwise directly show projector scene
+		else:
+			_on_open_milestone("projector")
+	else:
+		info_text = dialogue_dataset["projector_no_disk"]["text_data"]
+		dialogue_box.display_dialogue(info_text, null)
+
+
+func _on_show_book_info(info_text):
+	dialogue_box.display_dialogue(info_text, null)
+			
+	
+func _on_globe_clicked():
+	if globe_map.status == 1: # inactive enum
+		var info_text
+		if has_globe_key:
+			globe_map.activate_globe()
+			info_text = dialogue_dataset["globe_activation"]["text_data"]
+		else: 
+			info_text = dialogue_dataset["inactive_globe"]["text_data"]
+			
+		globe_map.display_scene()
+		dialogue_box.display_dialogue(info_text, null)
+	else:
+		globe_map.display_scene()
+
+
+func _on_globe_unlocked():
+	
+	dialogue_box.associated_milestone = "globe_unlock"
+	var info_text = dialogue_dataset["globe_unlock"]["text_data"]
+	dialogue_box.display_dialogue(info_text, null)
+
+
+func _on_vault_clicked():
+	pass
+	
+	

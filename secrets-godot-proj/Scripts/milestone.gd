@@ -21,6 +21,7 @@ func update_display(milestone_data):
 	milestone_name = milestone_data["name"]
 	info_text_box.text = milestone_data["text"]
 	icon_display.texture = milestone_data["icon_texture"]
+	action_button.position.x = milestone_data["margin"]
 	action_button.set_button_data(milestone_data["btn_data"])
 	show()
 	# to do: play sound effect
