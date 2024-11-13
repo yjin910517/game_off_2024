@@ -12,6 +12,7 @@ signal navigate_to_home(item_found)
 @onready var picnic_zoom = $PicnicZoom
 @onready var bench_zoom = $BenchZoom
 @onready var find_zoom = $FindZoom
+@onready var bench_zoom_after = $BenchZoomAfter
 
 
 var item_found
@@ -48,6 +49,9 @@ func _ready() -> void:
 	find_zoom.connect("park_item_found", Callable(self, "_on_park_item_found"))
 	find_zoom.position = Vector2(0,0)
 	find_zoom.hide()
+
+	bench_zoom_after.position = Vector2(0,0)
+	bench_zoom_after.hide()
 	
 	latest_highlight_idx = 0
 	item_found = false
@@ -59,6 +63,11 @@ func _on_navigation_clicked():
 
 
 func _on_park_item_found():
+	
+	# redirect bench highlight to a new display page
+	bench_control.set_highlight_name("bench_after")
+	
+	# bring item home
 	item_found = true
 	emit_signal("navigate_to_home", item_found)
 	hide()
@@ -72,12 +81,14 @@ func _on_highlight_clicked(highlight_name):
 		picnic_zoom.show()
 	if highlight_name == "bench":
 		bench_zoom.show()
+	if highlight_name == "bench_after":
+		bench_zoom_after.show()
+		
 
 
 func _on_trigger_next_highlight():
 	latest_highlight_idx += 1
 	var new_highlight = highlight_list[latest_highlight_idx]
-	print("move on to ", new_highlight)
 	_show_highlight_display(new_highlight)
 
 

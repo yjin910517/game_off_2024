@@ -39,10 +39,10 @@ stretch_mode = 5
 [node name="ParkNav" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 747.0
-offset_top = 16.0
-offset_right = 940.0
-offset_bottom = 54.0
+offset_left = 739.0
+offset_top = 25.0
+offset_right = 932.0
+offset_bottom = 63.0
 script = ExtResource("3_qt56e")
 metadata/_edit_group_ = true
 
@@ -371,7 +371,7 @@ offset_bottom = 1127.0
 size_flags_horizontal = 4
 
 [node name="DialogueBox" parent="." instance=ExtResource("16_vdwva")]
-offset_left = 753.0
+offset_left = 972.0
 offset_top = 5.0
-offset_right = 1713.0
+offset_right = 1932.0
 offset_bottom = 545.0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfvspoui6amtl"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_ph6wp"]
+[ext_resource type="PackedScene" uid="uid://doeqfqx5hjh2u" path="res://Scenes/Computer.tscn" id="2_f7iqm"]
+[ext_resource type="PackedScene" uid="uid://njuy78jabbgv" path="res://Scenes/StudyRoom.tscn" id="2_jwljh"]
+[ext_resource type="PackedScene" uid="uid://csvyfdimksl8c" path="res://Scenes/MountainPark.tscn" id="3_m5o0e"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ph6wp")
+
+[node name="Computer" parent="." instance=ExtResource("2_f7iqm")]
+
+[node name="StudyRoom" parent="." instance=ExtResource("2_jwljh")]
+
+[node name="MountainPark" parent="." instance=ExtResource("3_m5o0e")]
