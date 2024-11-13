@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://csvyfdimksl8c"]
+[gd_scene load_steps=19 format=3 uid="uid://csvyfdimksl8c"]
 
 [ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_445ye"]
 [ext_resource type="Script" path="res://Scripts/mountain_park.gd" id="1_iruct"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://Scripts/park_find.gd" id="15_8mstf"]
 [ext_resource type="Texture2D" uid="uid://d0bccmay7fhu6" path="res://Arts/globe_power_icon.png" id="16_63ygj"]
 [ext_resource type="Script" path="res://Scripts/action_button.gd" id="17_jp8hv"]
-[ext_resource type="Script" path="res://Scripts/park_bench_after.gd" id="18_bw4ia"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_edpmx"]
 animations = [{
@@ -473,68 +472,7 @@ theme_override_fonts/font = ExtResource("6_ibwwn")
 theme_override_font_sizes/font_size = 32
 text = ">"
 
-[node name="BenchZoomAfter" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1612.0
-offset_top = -993.0
-offset_right = 2572.0
-offset_bottom = -453.0
-script = ExtResource("18_bw4ia")
-metadata/_edit_group_ = true
-
-[node name="Background" type="ColorRect" parent="BenchZoomAfter"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.0705882, 0.0980392, 1)
-
-[node name="InfoText" type="RichTextLabel" parent="BenchZoomAfter"]
-layout_mode = 0
-offset_left = 99.0
-offset_top = 86.0
-offset_right = 905.0
-offset_bottom = 192.0
-theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
-theme_override_constants/line_separation = 8
-theme_override_fonts/normal_font = ExtResource("6_ibwwn")
-theme_override_font_sizes/normal_font_size = 24
-text = "There is a small container hidden under the bench. Inside are a battery and a note:"
-
-[node name="IconDisplay" type="TextureRect" parent="BenchZoomAfter"]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 256.0
-offset_right = 367.0
-offset_bottom = 450.0
-texture = ExtResource("16_63ygj")
-stretch_mode = 5
-
-[node name="Note" type="ColorRect" parent="BenchZoomAfter"]
-layout_mode = 0
-offset_left = 437.0
-offset_top = 243.0
-offset_right = 868.0
-offset_bottom = 473.0
-color = Color(0.741176, 0.607843, 0.294118, 1)
-metadata/_edit_group_ = true
-
-[node name="NoteText" type="RichTextLabel" parent="BenchZoomAfter/Note"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 42.0
-offset_right = 418.0
-offset_bottom = 189.0
-theme_override_colors/default_color = Color(0.984314, 0.890196, 0.858824, 1)
-theme_override_constants/line_separation = 8
-theme_override_fonts/normal_font = ExtResource("6_ibwwn")
-theme_override_font_sizes/normal_font_size = 20
-text = "Our last trip together. The country is the key to the world. One touch opens it all."
-
-[node name="ExitIcon" type="Control" parent="BenchZoomAfter"]
+[node name="ExitIcon" type="Control" parent="FindZoom"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 899.0
@@ -544,7 +482,7 @@ offset_bottom = 67.0
 script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="BenchZoomAfter/ExitIcon"]
+[node name="Label" type="Label" parent="FindZoom/ExitIcon"]
 layout_mode = 0
 offset_right = 54.0
 offset_bottom = 54.0

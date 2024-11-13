@@ -57,7 +57,8 @@ var dialogue_dataset = {
 		"text_data": "Hmm, there is something on the lid."
 	},
 	"projector_disk": {
-		"text_data": "I can use it to play the disk I just found."
+		"text_data": "I can use it to play the disk I just found.",
+		"btn_data": {"label": "Play Disk", "value": "projector"}
 	},
 	"inactive_globe": {
 		"text_data": "A globe with world map on it. The surface seems to be a touch screen."
@@ -67,7 +68,10 @@ var dialogue_dataset = {
 		"btn_data": {"label": "Use Battery", "value": "globe"}
 	},
 	"globe_activation_2": {
-		"text_data": "The globe light up after you inserted the battery. Now the touchscreen is functional.",
+		"text_data": "The globe light up after you inserted the battery. Now the touchscreen is functional."
+	},
+	"activated_globe": {
+		"text_data": "Our last trip together...That country...Where we first met... Where we said our goodbyes..."
 	},
 	"globe_unlock": {
 		"text_data": "The globe starts making sound. A lock clicked sound. Is it a lockbox?"
@@ -84,7 +88,7 @@ var milestone_dataset = {
 	"disk":{
 		"text": "There is an envelope sticked to the lid.\n\nInside is an old memory disk.\n\nCan be played on the projector.",
 		"icon_texture": load("res://Arts/disk_icon.png"),
-		"btn_label": "Take disk & Continue",
+		"btn_label": "Take Disk & Continue",
 		"margin": 160 # the position.x value of button
 	},	
 }
@@ -137,6 +141,7 @@ func _ready():
 	
 	# Globe map scene
 	globe_map.connect("globe_unlocked", Callable(self, "_on_globe_unlocked"))
+	globe_map.connect("milestone_completed", Callable(self, "_on_dialogue_action_chosen"))
 	globe_map.position = Vector2(0,0)
 	globe_map.z_index = 1 # already set in node inspector
 	globe_map.hide()
@@ -148,6 +153,7 @@ func _ready():
 	projector.hide()
 
 
+# Navigation to park scene
 func _on_navigation_clicked():
 	emit_signal("navigate_to_park")
 	hide()
@@ -155,7 +161,12 @@ func _on_navigation_clicked():
 
 # Handle action signals from dialogue
 func _on_dialogue_action_chosen(action_name):
-	
+		
+	if action_name == "passport":
+		passport_found = true
+		passport_callout.show()
+		passport.show()
+		
 	if action_name == "feed":
 		toby_fed = true
 		bowl_control.add_food()
@@ -169,21 +180,26 @@ func _on_dialogue_action_chosen(action_name):
 		dialogue_box.associated_milestone = "disk"
 		var info_text = dialogue_dataset["disk"]["text_data"]
 		dialogue_box.display_dialogue(info_text, null)
-		
-	if action_name == "passport":
-		passport_found = true
-		passport_callout.show()
-		passport.show()
 
 	if action_name == "disk":
 		disk_acquired = true
+	
+	if action_name == "projector":
+		
+		shield.show()
+		# to do: sound effect
+		await get_tree().create_timer(1).timeout
+		_on_open_milestone("projector")
+		shield.hide()
 	
 	if action_name == "park":
 		emit_signal("navigate_to_park")
 		hide()
 	
 	if action_name == "globe":
+	
 		shield.show()
+		# to do: add sound effect
 		await get_tree().create_timer(1).timeout
 		globe_map.activate_globe()
 		await get_tree().create_timer(1).timeout
@@ -192,6 +208,9 @@ func _on_dialogue_action_chosen(action_name):
 		# display next dialogue to complete the activation
 		var info_text = dialogue_dataset["globe_activation_2"]["text_data"]
 		dialogue_box.display_dialogue(info_text, null)
+
+	if action_name == "key":
+		has_vault_key = true
 
 
 # Display milestone page
@@ -211,6 +230,7 @@ func _on_open_milestone(milestone_name):
 		if milestone_name == "projector":
 			projector.milestone_name = "park"
 			projector.show()
+			disk_played = true
 			park_nav.show()
 		
 		if milestone_name == "globe_unlock":
@@ -285,13 +305,13 @@ func _on_food_bowl_clicked():
 
 func _on_projector_clicked():
 	var info_text
+	var btn_data
 	if disk_acquired:
 		# show dialogue if this is the first time playing video
 		if disk_played == false:
-			dialogue_box.associated_milestone = "projector"
 			info_text = dialogue_dataset["projector_disk"]["text_data"]
-			dialogue_box.display_dialogue(info_text, null)
-			disk_played = true
+			btn_data = dialogue_dataset["projector_disk"]["btn_data"]
+			dialogue_box.display_dialogue(info_text, btn_data)
 			
 		# otherwise directly show projector scene
 		else:
@@ -303,17 +323,25 @@ func _on_projector_clicked():
 			
 	
 func _on_globe_clicked():
-	if globe_map.status == 1: # inactive enum
-		var info_text
-		var btn_data
+	var info_text
+	var btn_data
+	if globe_map.status == 0: # inactive enum
+		# show the prompt if the key is acquired but the globe is not activated yet.
 		if has_globe_key:
 			info_text = dialogue_dataset["globe_activation_1"]["text_data"]
 			btn_data = dialogue_dataset["globe_activation_1"]["btn_data"]
 			dialogue_box.display_dialogue(info_text, btn_data)
+				
+		# show inactive globe info
 		else: 
 			info_text = dialogue_dataset["inactive_globe"]["text_data"]
 			dialogue_box.display_dialogue(info_text, null)
 			
+	# use dialogue to repeat note clue if the globe is activated but not opened yet
+	if globe_map.status == 1: # active enum
+		info_text = dialogue_dataset["activated_globe"]["text_data"]
+		dialogue_box.display_dialogue(info_text, null)
+		
 	# display scene for all status
 	globe_map.display_scene()
 
@@ -326,6 +354,6 @@ func _on_globe_unlocked():
 
 
 func _on_vault_clicked():
-	pass
+	print("has vault key? ", has_vault_key)
 	
 	

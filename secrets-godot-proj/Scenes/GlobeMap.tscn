@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ssue0m4qp6u0"]
+[gd_scene load_steps=8 format=3 uid="uid://ssue0m4qp6u0"]
 
 [ext_resource type="Script" path="res://Scripts/globe_object.gd" id="1_jjku3"]
 [ext_resource type="Texture2D" uid="uid://dqon6k5cjlv8g" path="res://Arts/world_map_activated.png" id="2_c2tdg"]
 [ext_resource type="Script" path="res://Scripts/globe_map.gd" id="2_qefoa"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="2_tpbax"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="3_k15i8"]
+[ext_resource type="Texture2D" uid="uid://cggm5es1c0827" path="res://Arts/vault_key.png" id="4_g6owx"]
+[ext_resource type="Script" path="res://Scripts/action_button.gd" id="6_q6e8n"]
 
 [node name="GlobeMap" type="Control"]
 z_index = 1
@@ -50,7 +52,6 @@ offset_right = -962.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_group_ = true
 
 [node name="Background" type="ColorRect" parent="Content"]
 layout_mode = 1
@@ -61,24 +62,73 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.0705882, 0.0980392, 1)
 
-[node name="Key" type="ColorRect" parent="Content"]
+[node name="Key" type="TextureRect" parent="Content"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 178.0
-offset_right = 384.0
-offset_bottom = 392.0
-color = Color(1, 0.301961, 1, 1)
+offset_left = 186.0
+offset_top = 102.0
+offset_right = 330.0
+offset_bottom = 316.0
+texture = ExtResource("4_g6owx")
+stretch_mode = 5
 
-[node name="Clue" type="RichTextLabel" parent="Content"]
+[node name="Note" type="ColorRect" parent="Content"]
+offset_left = 419.0
+offset_top = 65.0
+offset_right = 795.0
+offset_bottom = 391.0
+color = Color(0.580392, 0.823529, 0.741176, 1)
+metadata/_edit_group_ = true
+
+[node name="NoteText" type="RichTextLabel" parent="Content/Note"]
 layout_mode = 0
-offset_left = 454.0
-offset_top = 186.0
-offset_right = 896.0
-offset_bottom = 419.0
+offset_left = 17.0
+offset_top = 42.0
+offset_right = 361.0
+offset_bottom = 289.0
 theme_override_constants/line_separation = 8
 theme_override_fonts/normal_font = ExtResource("3_k15i8")
-theme_override_font_sizes/normal_font_size = 32
-text = "This is a clue about the computer file password."
+theme_override_font_sizes/normal_font_size = 20
+text = "I know you would solve it fast:) Here is the vault key. 
+
+Love,
+E"
+
+[node name="ActionButton" type="Control" parent="Content"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 173.0
+offset_top = 430.0
+offset_right = 792.0
+offset_bottom = 473.0
+script = ExtResource("6_q6e8n")
+metadata/_edit_group_ = true
+
+[node name="ActionText" type="Label" parent="Content/ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 544.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_k15i8")
+theme_override_font_sizes/font_size = 32
+text = "Take Key & Continue"
+
+[node name="OptionHighlight" type="Label" parent="Content/ActionButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_k15i8")
+theme_override_font_sizes/font_size = 32
+text = ">"
 
 [node name="ExitIcon" type="Control" parent="."]
 layout_mode = 3

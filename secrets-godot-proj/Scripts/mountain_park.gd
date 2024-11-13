@@ -12,7 +12,6 @@ signal navigate_to_home(item_found)
 @onready var picnic_zoom = $PicnicZoom
 @onready var bench_zoom = $BenchZoom
 @onready var find_zoom = $FindZoom
-@onready var bench_zoom_after = $BenchZoomAfter
 
 
 var item_found
@@ -49,9 +48,6 @@ func _ready() -> void:
 	find_zoom.connect("park_item_found", Callable(self, "_on_park_item_found"))
 	find_zoom.position = Vector2(0,0)
 	find_zoom.hide()
-
-	bench_zoom_after.position = Vector2(0,0)
-	bench_zoom_after.hide()
 	
 	latest_highlight_idx = 0
 	item_found = false
@@ -82,7 +78,7 @@ func _on_highlight_clicked(highlight_name):
 	if highlight_name == "bench":
 		bench_zoom.show()
 	if highlight_name == "bench_after":
-		bench_zoom_after.show()
+		find_zoom.show()
 		
 
 
