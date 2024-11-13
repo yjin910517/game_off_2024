@@ -407,6 +407,7 @@ text = "There is a small container hidden under the bench. Inside are a battery 
 "
 
 [node name="IconDisplay" type="TextureRect" parent="FindZoom/ParkMilestone"]
+layout_mode = 0
 offset_left = 115.0
 offset_top = 199.0
 offset_right = 370.0
@@ -415,6 +416,7 @@ texture = ExtResource("16_63ygj")
 stretch_mode = 5
 
 [node name="Note" type="ColorRect" parent="FindZoom/ParkMilestone"]
+layout_mode = 0
 offset_left = 437.0
 offset_top = 185.0
 offset_right = 868.0

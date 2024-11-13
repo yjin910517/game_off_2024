@@ -57,7 +57,7 @@ texture = ExtResource("2_lv1ma")
 layout_mode = 0
 offset_left = 42.0
 offset_top = 20.0
-offset_right = 578.0
+offset_right = 562.0
 offset_bottom = 100.0
 theme_override_colors/default_color = Color(0.0392157, 0.576471, 0.588235, 1)
 theme_override_constants/line_separation = 2
@@ -66,7 +66,7 @@ theme_override_font_sizes/normal_font_size = 16
 text = "Toby is still with the catsitter. The food bowl is empty. I better refill it."
 
 [node name="ActionUI" type="Node2D" parent="UIBox"]
-position = Vector2(620, 20)
+position = Vector2(600, 20)
 
 [node name="ActionButton" type="Control" parent="UIBox/ActionUI"]
 layout_mode = 3

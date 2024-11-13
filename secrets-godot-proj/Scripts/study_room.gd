@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal navigate_to_park()
+signal open_computer()
 
 
 # children node references
@@ -61,8 +62,12 @@ var dialogue_dataset = {
 	"inactive_globe": {
 		"text_data": "A globe with world map on it. The surface seems to be a touch screen."
 	},
-	"globe_activation": {
-		"text_data": "The gadget worked on the globe. Now the touch screen has been swtiched on."
+	"globe_activation_1": {
+		"text_data": "The battery seems to match a socket at the bottom of the globe.",
+		"btn_data": {"label": "Use Battery", "value": "globe"}
+	},
+	"globe_activation_2": {
+		"text_data": "The globe light up after you inserted the battery. Now the touchscreen is functional.",
 	},
 	"globe_unlock": {
 		"text_data": "The globe starts making sound. A lock clicked sound. Is it a lockbox?"
@@ -157,7 +162,7 @@ func _on_dialogue_action_chosen(action_name):
 		food_container_control.pour_food()
 		# to do: animation & sound
 		shield.show()
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout
 		shield.hide()
 		
 		# show dialogue that leads to milestone scene of disk discovery
@@ -176,7 +181,18 @@ func _on_dialogue_action_chosen(action_name):
 	if action_name == "park":
 		emit_signal("navigate_to_park")
 		hide()
+	
+	if action_name == "globe":
+		shield.show()
+		await get_tree().create_timer(1).timeout
+		globe_map.activate_globe()
+		await get_tree().create_timer(1).timeout
+		shield.hide()
 		
+		# display next dialogue to complete the activation
+		var info_text = dialogue_dataset["globe_activation_2"]["text_data"]
+		dialogue_box.display_dialogue(info_text, null)
+
 
 # Display milestone page
 func _on_open_milestone(milestone_name):
@@ -205,13 +221,19 @@ func _on_open_milestone(milestone_name):
 	
 
 func _on_computer_clicked():
-	pass
+	emit_signal("open_computer")
+	hide()
+	
 
 func _on_calendar_clicked():
 	# test only
 	has_globe_key = true
 	
 
+func _on_show_book_info(info_text):
+	dialogue_box.display_dialogue(info_text, null)
+	
+	
 func _on_passport_box_found(info_text):
 
 	if passport_found:
@@ -274,28 +296,26 @@ func _on_projector_clicked():
 		# otherwise directly show projector scene
 		else:
 			_on_open_milestone("projector")
+			
 	else:
 		info_text = dialogue_dataset["projector_no_disk"]["text_data"]
 		dialogue_box.display_dialogue(info_text, null)
-
-
-func _on_show_book_info(info_text):
-	dialogue_box.display_dialogue(info_text, null)
 			
 	
 func _on_globe_clicked():
 	if globe_map.status == 1: # inactive enum
 		var info_text
+		var btn_data
 		if has_globe_key:
-			globe_map.activate_globe()
-			info_text = dialogue_dataset["globe_activation"]["text_data"]
+			info_text = dialogue_dataset["globe_activation_1"]["text_data"]
+			btn_data = dialogue_dataset["globe_activation_1"]["btn_data"]
+			dialogue_box.display_dialogue(info_text, btn_data)
 		else: 
 			info_text = dialogue_dataset["inactive_globe"]["text_data"]
+			dialogue_box.display_dialogue(info_text, null)
 			
-		globe_map.display_scene()
-		dialogue_box.display_dialogue(info_text, null)
-	else:
-		globe_map.display_scene()
+	# display scene for all status
+	globe_map.display_scene()
 
 
 func _on_globe_unlocked():

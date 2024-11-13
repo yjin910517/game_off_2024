@@ -60,7 +60,7 @@ func display_dialogue(text_data, btn_data):
 func _show_action_ui():
 	action_ui_box.show()
 	# shorten text box to give space to ui box
-	info_text_box.size.x = 560
+	info_text_box.size.x = 520
 	
 
 func _hide_action_ui():
