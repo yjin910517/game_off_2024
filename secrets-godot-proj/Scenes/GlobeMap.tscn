@@ -72,6 +72,7 @@ texture = ExtResource("4_g6owx")
 stretch_mode = 5
 
 [node name="Note" type="ColorRect" parent="Content"]
+layout_mode = 0
 offset_left = 419.0
 offset_top = 65.0
 offset_right = 795.0
