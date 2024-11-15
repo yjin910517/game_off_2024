@@ -36,10 +36,10 @@ texture = ExtResource("2_c2tdg")
 
 [node name="ClickTarget" type="Control" parent="Map"]
 anchors_preset = 0
-offset_left = 624.0
-offset_top = 196.0
-offset_right = 664.0
-offset_bottom = 236.0
+offset_left = 174.0
+offset_top = 344.0
+offset_right = 279.0
+offset_bottom = 385.0
 
 [node name="Content" type="Control" parent="."]
 layout_mode = 1

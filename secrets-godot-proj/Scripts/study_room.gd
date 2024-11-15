@@ -29,6 +29,7 @@ signal open_computer()
 @onready var passport = $PassportContent 
 @onready var globe_map = $GlobeMap
 @onready var projector = $Projector
+@onready var vault = $VaultContent
 
 
 # key game progress flags
@@ -38,6 +39,7 @@ var disk_acquired = false # not happen in this node
 var disk_played = false
 var has_globe_key = false
 var has_vault_key = false
+var vault_opened = false
 
 
 # dialogue data
@@ -151,6 +153,11 @@ func _ready():
 	projector.position = Vector2(0,0)
 	projector.z_index = 1 # already set in node inspector
 	projector.hide()
+	
+	# Vault content scene
+	vault.position = Vector2(0,0)
+	vault.z_index = 1 # already set in node inspector
+	vault.hide()
 
 
 # Navigation to park scene
@@ -355,5 +362,10 @@ func _on_globe_unlocked():
 
 func _on_vault_clicked():
 	print("has vault key? ", has_vault_key)
+	if has_vault_key:
+		if vault_opened == false:
+			pass
+			# to do: show dialogue for the first time open
+		vault.show()
 	
 	

@@ -9,7 +9,7 @@ signal window_closed()
 @onready var feedback_msg = $FeedbackMsg
 
 
-const CORRECT_PW = "2016"
+const CORRECT_PW = "Thorn1991"
 
 
 # Called when the node enters the scene tree for the first time.

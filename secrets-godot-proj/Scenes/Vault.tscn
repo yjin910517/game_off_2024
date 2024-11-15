@@ -1,14 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://bicqk55ccy7if"]
+[gd_scene load_steps=13 format=3 uid="uid://bicqk55ccy7if"]
 
 [ext_resource type="Script" path="res://Scripts/vault_content.gd" id="1_vbtk0"]
 [ext_resource type="Script" path="res://Scripts/vault_item_control.gd" id="2_ro1i8"]
-[ext_resource type="Texture2D" uid="uid://81ulx1yy5kmt" path="res://Arts/vault_content_1.png" id="3_ttucq"]
+[ext_resource type="Texture2D" uid="uid://ccljap8yqk53o" path="res://Arts/vault_content_files.png" id="3_7llo6"]
 [ext_resource type="Script" path="res://Scripts/hover_rect.gd" id="4_6rn20"]
+[ext_resource type="Texture2D" uid="uid://4ji6od2w02p" path="res://Arts/vault_content_books.png" id="5_3eoch"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_fhpj4"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_tc1wu"]
+[ext_resource type="Texture2D" uid="uid://c0y61atsfk8e4" path="res://Arts/vault_content_letters.png" id="6_wny44"]
+[ext_resource type="Texture2D" uid="uid://w57vsmmwj55n" path="res://Arts/vault_content_tickets.png" id="7_168vo"]
 [ext_resource type="Script" path="res://Scripts/vault_zoom_in.gd" id="7_grj7a"]
+[ext_resource type="Texture2D" uid="uid://erdpcm8briwg" path="res://Arts/vault_content_clue.png" id="8_ec3ih"]
+[ext_resource type="Texture2D" uid="uid://bnh3767l08jh5" path="res://Arts/vault_content_pw_clue.png" id="12_nart4"]
 
 [node name="VaultContent" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,18 +37,19 @@ color = Color(0, 0.0705882, 0.0980392, 1)
 [node name="DocControl" type="Control" parent="IconContainer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 82.0
-offset_top = 43.0
-offset_right = 238.0
-offset_bottom = 239.0
+offset_left = 108.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 224.0
 script = ExtResource("2_ro1i8")
+metadata/_edit_group_ = true
 
 [node name="Icon" type="TextureRect" parent="IconContainer/DocControl"]
 layout_mode = 0
 offset_right = 58.0
-offset_bottom = 64.0
+offset_bottom = 54.0
 scale = Vector2(2.7875, 3.1)
-texture = ExtResource("3_ttucq")
+texture = ExtResource("3_7llo6")
 stretch_mode = 5
 
 [node name="HoverRect" type="ColorRect" parent="IconContainer/DocControl"]
@@ -50,8 +57,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 7.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.960784, 1, 0.623529, 0.568627)
@@ -62,10 +67,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -16.0
-offset_right = 48.0
-offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.662745)
@@ -73,10 +74,10 @@ color = Color(0, 0, 0, 0.662745)
 [node name="PhotoBookControl" type="Control" parent="IconContainer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 608.0
-offset_top = 45.0
-offset_right = 764.0
-offset_bottom = 241.0
+offset_left = 195.0
+offset_top = 281.0
+offset_right = 353.0
+offset_bottom = 484.0
 script = ExtResource("2_ro1i8")
 metadata/_edit_group_ = true
 
@@ -85,7 +86,7 @@ layout_mode = 0
 offset_right = 58.0
 offset_bottom = 64.0
 scale = Vector2(2.7875, 3.1)
-texture = ExtResource("3_ttucq")
+texture = ExtResource("5_3eoch")
 stretch_mode = 5
 
 [node name="HoverRect" type="ColorRect" parent="IconContainer/PhotoBookControl"]
@@ -93,8 +94,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 7.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.960784, 1, 0.623529, 0.568627)
@@ -105,10 +104,117 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -16.0
-offset_right = 48.0
-offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="LetterControl" type="Control" parent="IconContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 678.0
+offset_top = 128.0
+offset_right = 850.0
+offset_bottom = 308.0
+script = ExtResource("2_ro1i8")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="IconContainer/LetterControl"]
+layout_mode = 0
+offset_right = 59.0
+offset_bottom = 58.0
+scale = Vector2(2.7875, 3.1)
+texture = ExtResource("6_wny44")
+stretch_mode = 5
+
+[node name="HoverRect" type="ColorRect" parent="IconContainer/LetterControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_6rn20")
+
+[node name="BlockRect" type="ColorRect" parent="IconContainer/LetterControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="TicketControl" type="Control" parent="IconContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 407.0
+offset_top = 52.0
+offset_right = 580.0
+offset_bottom = 233.0
+script = ExtResource("2_ro1i8")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="IconContainer/TicketControl"]
+layout_mode = 0
+offset_right = 61.0
+offset_bottom = 57.0
+scale = Vector2(2.7875, 3.1)
+texture = ExtResource("7_168vo")
+stretch_mode = 5
+
+[node name="HoverRect" type="ColorRect" parent="IconContainer/TicketControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_6rn20")
+
+[node name="BlockRect" type="ColorRect" parent="IconContainer/TicketControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="ClueControl" type="Control" parent="IconContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 460.0
+offset_top = 324.0
+offset_right = 629.0
+offset_bottom = 439.0
+script = ExtResource("2_ro1i8")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="IconContainer/ClueControl"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 36.0
+scale = Vector2(2.7875, 3.1)
+texture = ExtResource("8_ec3ih")
+stretch_mode = 5
+
+[node name="HoverRect" type="ColorRect" parent="IconContainer/ClueControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 1, 0.623529, 0.568627)
+script = ExtResource("4_6rn20")
+
+[node name="BlockRect" type="ColorRect" parent="IconContainer/ClueControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.662745)
@@ -136,43 +242,128 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1017.0
-offset_top = 72.0
-offset_right = 1017.0
-offset_bottom = 72.0
+offset_left = 961.0
+offset_right = 961.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_grj7a")
-metadata/_edit_group_ = true
 
-[node name="Shade" type="ColorRect" parent="ZoomIn"]
-layout_mode = 1
+[node name="InfoContainer" type="Node2D" parent="ZoomIn"]
+
+[node name="FileInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 52.0
-offset_top = 273.0
-offset_right = -54.0
-offset_bottom = -34.0
+offset_left = 65.0
+offset_top = 300.0
+offset_right = 844.0
+offset_bottom = 493.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.580392, 0.823529, 0.741176, 0.843137)
 
-[node name="NoteText" type="RichTextLabel" parent="ZoomIn"]
+[node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/FileInfo"]
 layout_mode = 0
-offset_left = 118.0
-offset_top = 318.0
-offset_right = 837.0
-offset_bottom = 468.0
+offset_left = 55.0
+offset_top = 30.0
+offset_right = 741.0
+offset_bottom = 180.0
 mouse_filter = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("6_tc1wu")
 theme_override_font_sizes/normal_font_size = 24
 text = "Elysia's medical records, insurance files, and legal documents. She kept everything organized for me."
 
+[node name="TicketInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 299.0
+offset_right = 843.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.580392, 0.823529, 0.741176, 0.843137)
+
+[node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/TicketInfo"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 34.0
+offset_right = 764.0
+offset_bottom = 184.0
+mouse_filter = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_tc1wu")
+theme_override_font_sizes/normal_font_size = 24
+text = "Elysia kept the ticket stubs from the trips and date nights we have together."
+
+[node name="PhotoBookInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 67.0
+offset_right = 845.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.580392, 0.823529, 0.741176, 0.843137)
+
+[node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/PhotoBookInfo"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 733.0
+offset_bottom = 178.0
+mouse_filter = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_tc1wu")
+theme_override_font_sizes/normal_font_size = 24
+text = "A photo album of our shared memories. I didn't know she has printed these photos and put this together..."
+
+[node name="LetterInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 183.0
+offset_right = 605.0
+offset_bottom = 409.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.580392, 0.823529, 0.741176, 0.843137)
+
+[node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/LetterInfo"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 491.0
+offset_bottom = 388.0
+mouse_filter = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("6_tc1wu")
+theme_override_font_sizes/normal_font_size = 24
+text = "All the letters and postcards. The correspondences we had from all these years."
+
+[node name="ClueInfo" type="TextureRect" parent="ZoomIn/InfoContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 52.0
+offset_right = 857.0
+offset_bottom = 479.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_nart4")
+
 [node name="TransparentShield" type="ColorRect" parent="ZoomIn"]
-z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

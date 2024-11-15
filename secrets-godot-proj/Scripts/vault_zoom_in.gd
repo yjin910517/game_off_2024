@@ -1,11 +1,15 @@
 extends Control
 
-signal zoom_closed(item_node)
+signal zoom_closed()
 
 @onready var shield_layer = $TransparentShield
-@onready var text_node = $NoteText
+@onready var info_container = $InfoContainer
+@onready var doc_info = $InfoContainer/FileInfo
+@onready var photo_book_info = $InfoContainer/PhotoBookInfo
+@onready var letter_info = $InfoContainer/LetterInfo
+@onready var ticket_info = $InfoContainer/TicketInfo
+@onready var clue_info = $InfoContainer/ClueInfo
 
-var item_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,19 +19,29 @@ func _ready() -> void:
 	hide()
 
 
-func display_zoom_in(control_node, text_data):
-	item_node = control_node
-	text_node.text = text_data
+func display_zoom_in(zoom_in_name):
+	
+	# hide all info box
+	var info_boxes = info_container.get_children()
+	for box in info_boxes:
+		box.hide()
+	
+	# show the selected info box
+	if zoom_in_name == "document":
+		doc_info.show()
+	if zoom_in_name == "photobook":
+		photo_book_info.show()
+	if zoom_in_name == "letter":
+		letter_info.show()
+	if zoom_in_name == "ticket":
+		ticket_info.show()
+	if zoom_in_name == "clue":
+		clue_info.show()
+ 
 	show()
 
-
-func display_clue():
-	text_node.text = "will display pw clue"
-	show()
-		
 
 func _on_shield_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		emit_signal("zoom_closed", item_node)
-		print("zoom closed for ", item_node.name)
+		emit_signal("zoom_closed")
 		hide()

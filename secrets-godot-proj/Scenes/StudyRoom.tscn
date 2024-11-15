@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://njuy78jabbgv"]
+[gd_scene load_steps=28 format=3 uid="uid://njuy78jabbgv"]
 
 [ext_resource type="Texture2D" uid="uid://b4dp33sk6677c" path="res://Arts/study_room.png" id="1_5g1kl"]
 [ext_resource type="Script" path="res://Scripts/study_room.gd" id="1_ph431"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bm52apdqmvtot" path="res://Scenes/PassportContent.tscn" id="18_w03qr"]
 [ext_resource type="PackedScene" uid="uid://ce35uuxi5fq6j" path="res://Scenes/Projector.tscn" id="20_4islk"]
 [ext_resource type="PackedScene" uid="uid://ssue0m4qp6u0" path="res://Scenes/GlobeMap.tscn" id="22_op86r"]
+[ext_resource type="PackedScene" uid="uid://bicqk55ccy7if" path="res://Scenes/Vault.tscn" id="25_j0rmd"]
 
 [node name="StudyRoom" type="Node2D"]
 script = ExtResource("1_ph431")
@@ -78,7 +79,7 @@ offset_left = 8.0
 offset_top = 7.0
 offset_right = 129.0
 offset_bottom = 80.0
-color = Color(0.960784, 1, 0.623529, 0)
+color = Color(0.62, 1, 0.797333, 0.501961)
 script = ExtResource("4_qvdir")
 
 [node name="CalendarControl" type="Control" parent="."]
@@ -93,7 +94,7 @@ script = ExtResource("3_iyfv0")
 [node name="HoverRect" type="ColorRect" parent="CalendarControl"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 28.0
+offset_top = 26.0
 offset_right = 126.0
 offset_bottom = 116.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
@@ -129,64 +130,63 @@ script = ExtResource("5_1666q")
 
 [node name="Book1" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 14.0
-offset_right = 34.0
-offset_bottom = 85.0
+offset_left = -2.0
+offset_top = 16.0
+offset_right = 25.0
+offset_bottom = 87.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book2" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 36.0
+offset_left = 27.0
 offset_top = 3.0
-offset_right = 66.0
+offset_right = 57.0
 offset_bottom = 85.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book3" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 18.0
-offset_right = 95.0
-offset_bottom = 84.0
+offset_left = 59.0
+offset_top = 20.0
+offset_right = 87.0
+offset_bottom = 87.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book4" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 2.0
-offset_right = 131.0
-offset_bottom = 84.0
+offset_left = 104.0
+offset_right = 134.0
+offset_bottom = 86.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book5" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 6.0
-offset_right = 165.0
-offset_bottom = 83.0
+offset_left = 147.0
+offset_top = 8.0
+offset_right = 178.0
+offset_bottom = 86.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book6" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 169.0
-offset_top = 4.0
-offset_right = 197.0
-offset_bottom = 84.0
+offset_left = 181.0
+offset_top = 16.0
+offset_right = 207.0
+offset_bottom = 86.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
 [node name="Book7" type="ColorRect" parent="TopBookControl"]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 14.0
-offset_right = 226.0
-offset_bottom = 85.0
+offset_left = 213.0
+offset_top = 4.0
+offset_right = 243.0
+offset_bottom = 86.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
 
@@ -350,11 +350,16 @@ offset_top = -590.0
 offset_right = -74.0
 offset_bottom = -50.0
 
+[node name="VaultContent" parent="." instance=ExtResource("25_j0rmd")]
+offset_left = -960.0
+offset_top = -1212.0
+offset_bottom = -672.0
+
 [node name="Milestone" parent="." instance=ExtResource("17_mfrjw")]
-offset_left = 749.0
-offset_top = 587.0
-offset_right = 1709.0
-offset_bottom = 1127.0
+offset_left = 994.0
+offset_top = 676.0
+offset_right = 1954.0
+offset_bottom = 1216.0
 size_flags_horizontal = 4
 
 [node name="DialogueBox" parent="." instance=ExtResource("16_vdwva")]
