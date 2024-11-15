@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://jqpc1g3p6a1t"]
+[gd_scene load_steps=8 format=3 uid="uid://jqpc1g3p6a1t"]
 
 [ext_resource type="Script" path="res://Scripts/password_input_box.gd" id="1_0kbx2"]
 [ext_resource type="Texture2D" uid="uid://cxheh626mgpei" path="res://Arts/computer_popup_window.png" id="1_76pe0"]
 [ext_resource type="Script" path="res://Scripts/file_folder.gd" id="1_eq5wo"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="2_osx87"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="3_gmnex"]
+[ext_resource type="AudioStream" uid="uid://bcy3opswxcpg4" path="res://Audios/wrong_pw.wav" id="6_4tpuf"]
 [ext_resource type="Script" path="res://Scripts/folder_content.gd" id="6_rfctb"]
 
 [node name="FileFolder" type="Node2D"]
@@ -53,7 +54,7 @@ offset_right = 549.0
 offset_bottom = 214.0
 theme_override_fonts/font = ExtResource("2_osx87")
 theme_override_font_sizes/font_size = 20
-text = "Access Code:"
+text = "ACCESS CODE:"
 
 [node name="PWInput" type="LineEdit" parent="PasswordInputBox"]
 layout_mode = 0
@@ -71,7 +72,9 @@ offset_left = 306.0
 offset_top = 268.0
 offset_right = 579.0
 offset_bottom = 302.0
-text = "feedback msg placeholder"
+theme_override_colors/font_color = Color(0.94902, 0.454902, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_osx87")
+text = "feedback msg "
 
 [node name="ExitIcon" type="Control" parent="PasswordInputBox"]
 layout_mode = 3
@@ -93,6 +96,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_osx87")
 theme_override_font_sizes/font_size = 32
 text = "X"
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="PasswordInputBox"]
+stream = ExtResource("6_4tpuf")
 
 [node name="FolderContent" type="Control" parent="."]
 layout_mode = 3

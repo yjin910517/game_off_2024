@@ -1,12 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://ssue0m4qp6u0"]
+[gd_scene load_steps=12 format=3 uid="uid://ssue0m4qp6u0"]
 
 [ext_resource type="Script" path="res://Scripts/globe_object.gd" id="1_jjku3"]
 [ext_resource type="Texture2D" uid="uid://dqon6k5cjlv8g" path="res://Arts/world_map_activated.png" id="2_c2tdg"]
 [ext_resource type="Script" path="res://Scripts/globe_map.gd" id="2_qefoa"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="2_tpbax"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="3_k15i8"]
+[ext_resource type="AudioStream" uid="uid://bbrytyf5b1sj4" path="res://Audios/globe_activation.wav" id="4_cu3ta"]
 [ext_resource type="Texture2D" uid="uid://cggm5es1c0827" path="res://Arts/vault_key.png" id="4_g6owx"]
+[ext_resource type="Texture2D" uid="uid://bw2fgcifoky1o" path="res://Arts/map_target1.png" id="5_0be31"]
+[ext_resource type="Texture2D" uid="uid://bk164dvljw43p" path="res://Arts/map_target2.png" id="6_63n8v"]
 [ext_resource type="Script" path="res://Scripts/action_button.gd" id="6_q6e8n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxtok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0be31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_63n8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0be31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_63n8v")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="GlobeMap" type="Control"]
 z_index = 1
@@ -40,6 +63,16 @@ offset_left = 174.0
 offset_top = 344.0
 offset_right = 279.0
 offset_bottom = 385.0
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="Map"]
+stream = ExtResource("4_cu3ta")
+
+[node name="Highlight" type="AnimatedSprite2D" parent="Map"]
+position = Vector2(224, 362)
+scale = Vector2(1.90164, 2.08)
+sprite_frames = SubResource("SpriteFrames_uxtok")
+frame = 3
+frame_progress = 1.0
 
 [node name="Content" type="Control" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm52apdqmvtot"]
+[gd_scene load_steps=9 format=3 uid="uid://bm52apdqmvtot"]
 
 [ext_resource type="Script" path="res://Scripts/passport_content.gd" id="1_g8vof"]
 [ext_resource type="Texture2D" uid="uid://gb2m615cpfcx" path="res://Arts/passport_id_page.png" id="1_ufxyg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bsk6fv7i3i2x1" path="res://Arts/arrow_left.png" id="4_ggwbt"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="6_57ong"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="7_ye236"]
+[ext_resource type="AudioStream" uid="uid://deuwgqpjk1kb3" path="res://Audios/page_flip.wav" id="8_dsuwn"]
 
 [node name="PassportContent" type="Control"]
 z_index = 1
@@ -73,6 +74,7 @@ theme_override_font_sizes/font_size = 54
 text = "X"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_dsuwn")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

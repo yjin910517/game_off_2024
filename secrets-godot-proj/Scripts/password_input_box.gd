@@ -7,6 +7,7 @@ signal window_closed()
 @onready var exit_icon = $ExitIcon
 @onready var pw_edit = $PWInput
 @onready var feedback_msg = $FeedbackMsg
+@onready var audio = $Audio
 
 
 const CORRECT_PW = "Thorn1991"
@@ -35,11 +36,11 @@ func _on_pw_entered(entered_password: String):
 		# To do: Play sound affect
 		emit_signal("password_verified")
 	else:
+		audio.play()
 		# to do: draw from a pool of feedback messages
-		# move the method to msg node script?
-		feedback_msg.text = "Submitted wrong pw: " + entered_password
+		feedback_msg.text = "Wrong Password"
 		feedback_msg.show()
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout
 		feedback_msg.hide()
 	
 	

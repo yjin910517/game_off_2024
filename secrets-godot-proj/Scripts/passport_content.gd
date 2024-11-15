@@ -44,7 +44,9 @@ func _on_page_turn(direction):
 		current_page_idx -= 1
 	else:
 		current_page_idx += 1
-		
+	
+	# play sound
+	audio.play()	
 	# display new page texture and ui icons
 	page_display.texture = pages[current_page_idx]
 	_update_arrow_icons()
