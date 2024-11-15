@@ -44,8 +44,11 @@ var vault_opened = false
 
 # dialogue data
 var dialogue_dataset = {
+	"book_stack": {
+		"text_data": "Stacks of books she never finished. Even in her final days, she couldn't stop reading."
+	},	
 	"bowl": {
-		"text_data": "Toby is still with the catsitter. The food bowl is empty. I better refill it.",
+		"text_data": "Toby is still with the catsitter. The food bowl is empty. I should refill it.",
 		"btn_data": {"label": "Add Food", "value": "feed"}
 	},
 	"container": {
@@ -53,42 +56,49 @@ var dialogue_dataset = {
 		"btn_data": {"label": "Add Food", "value": "feed"}
 	},
 	"projector_no_disk": {
-		"text_data": "An old-fashion disk player. You can insert compatible memory disk and view content."
+		"text_data": "An old-fashioned disk player. Nostalgic yet functional."
 	},	
 	"disk": {
-		"text_data": "Hmm, there is something on the lid."
+		"text_data": "Hmm, there’s something stuck to the lid."
 	},
 	"projector_disk": {
-		"text_data": "I can use it to play the disk I just found.",
+		"text_data": "I think I can use this to play the disk I just found.",
 		"btn_data": {"label": "Play Disk", "value": "projector"}
 	},
 	"inactive_globe": {
-		"text_data": "A globe with world map on it. The surface seems to be a touch screen."
+		"text_data": "An interactive world map. Its surface appears to be a touch screen. But it's powered off."
 	},
 	"globe_activation_1": {
-		"text_data": "The battery seems to match a socket at the bottom of the globe.",
+		"text_data": "Could this battery bring the touchscreen globe to life?",
 		"btn_data": {"label": "Use Battery", "value": "globe"}
 	},
 	"globe_activation_2": {
-		"text_data": "The globe light up after you inserted the battery. Now the touchscreen is functional."
+		"text_data": "The globe lights up as the battery clicks into place, its touchscreen now fully functional."
 	},
 	"activated_globe": {
-		"text_data": "Our last trip together...That country...Where we first met... Where we said our goodbyes..."
+		"text_data": "Our final journey together... That country... The place where it all began... and where it all ended."
 	},
 	"globe_unlock": {
-		"text_data": "The globe starts making sound. A lock clicked sound. Is it a lockbox?"
+		"text_data": "Something clicked. A hidden compartment inside the globe has revealed itself."
+	},
+	"vault_locked": {
+		"text_data": "The vault is locked. I should look for the key."
+	},
+	"vault_open": {
+		"text_data": "Unlock the vault?",
+		"btn_data": {"label": "Unlock", "value": "vault"}
 	},
 }
 
 var milestone_dataset = {
 	"passport":{
-		"text": "This book feels different.\n\nIt is not a book. It is a disguised box.\n\nElysia keeps her passport in it.\n\nNow I remember it. ",
+		"text": "This book feels... off.\n\nIt’s not a book at all. It’s a disguised box.\n\nInside, Elysia kept her passport. ",
 		"icon_texture": load("res://Arts/passport_milestone_icon.png"),
 		"btn_label": "Open E's Passport",
 		"margin": 214 # the position.x value of button
 	},
 	"disk":{
-		"text": "There is an envelope sticked to the lid.\n\nInside is an old memory disk.\n\nCan be played on the projector.",
+		"text": "You found a small envelope.\n\nInside, an old video disk is revealed.\n\nIt might be worth checking out.",
 		"icon_texture": load("res://Arts/disk_icon.png"),
 		"btn_label": "Take Disk & Continue",
 		"margin": 160 # the position.x value of button
@@ -165,6 +175,20 @@ func _on_navigation_clicked():
 	emit_signal("navigate_to_park")
 	hide()
 		
+		
+# update room configs once the battery is found
+func end_park_quest():
+	
+	# acquire battery
+	has_globe_key = true
+	
+	# hide park entries
+	park_nav.hide()
+	projector.hide_actions()
+	
+	# highlight globe for next step
+	globe_control.show_highlight()
+
 
 # Handle action signals from dialogue
 func _on_dialogue_action_chosen(action_name):
@@ -190,6 +214,7 @@ func _on_dialogue_action_chosen(action_name):
 
 	if action_name == "disk":
 		disk_acquired = true
+		projector_control.show_highlight()
 	
 	if action_name == "projector":
 		
@@ -218,6 +243,10 @@ func _on_dialogue_action_chosen(action_name):
 
 	if action_name == "key":
 		has_vault_key = true
+		
+	if action_name == "vault":
+		vault.show()
+		vault_opened = true
 
 
 # Display milestone page
@@ -238,7 +267,8 @@ func _on_open_milestone(milestone_name):
 			projector.milestone_name = "park"
 			projector.show()
 			disk_played = true
-			park_nav.show()
+			if has_globe_key == false:
+				park_nav.show()
 		
 		if milestone_name == "globe_unlock":
 			globe_map.open_globe()
@@ -277,7 +307,8 @@ func _on_passport_callout_clicked():
 
 
 func _on_book_pile_clicked():
-	pass
+	var text_data = dialogue_dataset["book_stack"]["text_data"]
+	dialogue_box.display_dialogue(text_data, null)
 	
 
 func _on_food_container_clicked():
@@ -361,11 +392,15 @@ func _on_globe_unlocked():
 
 
 func _on_vault_clicked():
-	print("has vault key? ", has_vault_key)
+	var info_text
+	var btn_data
 	if has_vault_key:
 		if vault_opened == false:
-			pass
-			# to do: show dialogue for the first time open
-		vault.show()
+			info_text = dialogue_dataset["vault_open"]["text_data"]
+			btn_data = dialogue_dataset["vault_open"]["btn_data"]
+			dialogue_box.display_dialogue(info_text, btn_data)
+	else:
+		info_text = dialogue_dataset["vault_locked"]["text_data"]
+		dialogue_box.display_dialogue(info_text, null)
 	
 	

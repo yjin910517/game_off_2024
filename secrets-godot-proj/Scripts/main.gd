@@ -24,7 +24,8 @@ func _on_navigate_to_park():
 	
 # park to home
 func _on_navigate_to_home(item_found):
-	study_room.has_globe_key = item_found
+	if item_found:
+		study_room.end_park_quest()
 	study_room.show()
 
 

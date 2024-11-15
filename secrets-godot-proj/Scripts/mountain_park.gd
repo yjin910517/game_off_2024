@@ -78,7 +78,7 @@ func _on_highlight_clicked(highlight_name):
 	if highlight_name == "bench":
 		bench_zoom.show()
 	if highlight_name == "bench_after":
-		find_zoom.show()
+		bench_zoom.show()
 		
 
 

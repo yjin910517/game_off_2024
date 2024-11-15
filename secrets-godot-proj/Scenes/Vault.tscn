@@ -265,15 +265,15 @@ color = Color(0.580392, 0.823529, 0.741176, 0.843137)
 
 [node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/FileInfo"]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 30.0
-offset_right = 741.0
-offset_bottom = 180.0
+offset_left = 64.0
+offset_top = 15.0
+offset_right = 757.0
+offset_bottom = 189.0
 mouse_filter = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("6_tc1wu")
 theme_override_font_sizes/normal_font_size = 24
-text = "Elysia's medical records, insurance files, and legal documents. She kept everything organized for me."
+text = "Elysia’s medical records, insurance papers, and legal documents—all meticulously organized. She always thought ahead."
 
 [node name="TicketInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
 anchors_preset = 15
@@ -290,15 +290,15 @@ color = Color(0.580392, 0.823529, 0.741176, 0.843137)
 
 [node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/TicketInfo"]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 34.0
-offset_right = 764.0
-offset_bottom = 184.0
+offset_left = 46.0
+offset_top = 33.0
+offset_right = 760.0
+offset_bottom = 178.0
 mouse_filter = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("6_tc1wu")
 theme_override_font_sizes/normal_font_size = 24
-text = "Elysia kept the ticket stubs from the trips and date nights we have together."
+text = "Ticket stubs from every trip and date we shared, a collection of memories from our adventures together."
 
 [node name="PhotoBookInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
 anchors_preset = 15
@@ -316,21 +316,21 @@ color = Color(0.580392, 0.823529, 0.741176, 0.843137)
 [node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/PhotoBookInfo"]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 28.0
-offset_right = 733.0
-offset_bottom = 178.0
+offset_top = 26.0
+offset_right = 764.0
+offset_bottom = 162.0
 mouse_filter = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("6_tc1wu")
 theme_override_font_sizes/normal_font_size = 24
-text = "A photo album of our shared memories. I didn't know she has printed these photos and put this together..."
+text = "A photo album filled with our most cherished moments. I never knew she’d printed these out and created this."
 
 [node name="LetterInfo" type="ColorRect" parent="ZoomIn/InfoContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 67.0
-offset_top = 183.0
+offset_top = 132.0
 offset_right = 605.0
 offset_bottom = 409.0
 grow_horizontal = 2
@@ -341,14 +341,14 @@ color = Color(0.580392, 0.823529, 0.741176, 0.843137)
 [node name="NoteText" type="RichTextLabel" parent="ZoomIn/InfoContainer/LetterInfo"]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 28.0
-offset_right = 491.0
-offset_bottom = 388.0
+offset_top = 17.0
+offset_right = 525.0
+offset_bottom = 264.0
 mouse_filter = 2
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("6_tc1wu")
 theme_override_font_sizes/normal_font_size = 24
-text = "All the letters and postcards. The correspondences we had from all these years."
+text = "All the letters and postcards we exchanged over the years. It’s like reading through the story of us, one note at a time."
 
 [node name="ClueInfo" type="TextureRect" parent="ZoomIn/InfoContainer"]
 anchors_preset = 15

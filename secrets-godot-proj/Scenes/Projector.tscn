@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ce35uuxi5fq6j"]
+[gd_scene load_steps=11 format=3 uid="uid://ce35uuxi5fq6j"]
 
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="1_bsbab"]
 [ext_resource type="Script" path="res://Scripts/projector.gd" id="1_nevjg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dkqpkk4fi1j6a" path="res://Arts/video_footage4.png" id="5_pxxmy"]
 [ext_resource type="Script" path="res://Scripts/action_button.gd" id="6_vyly5"]
 [ext_resource type="Script" path="res://Scripts/dialogue_exit_button.gd" id="7_pahil"]
+[ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="9_h0qle"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ttqak"]
 animations = [{
@@ -89,16 +90,16 @@ layout_mode = 0
 offset_left = 44.0
 offset_top = 45.0
 offset_right = 937.0
-offset_bottom = 178.0
+offset_bottom = 175.0
 theme_override_colors/default_color = Color(0.623529, 1, 0.796078, 1)
 theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("1_bsbab")
 theme_override_font_sizes/normal_font_size = 20
-text = "It's a video taken in our favorite mountain park nearby. Elysia said in the video: \"Come to the park, to our secret dating place on the mountain top.\"
+text = "It’s a video from our favorite mountain park nearby. Elysia’s voice echoes in the video: 'Come to the park, to our secret spot on the mountaintop.'
 "
 
 [node name="VideoFootage" type="AnimatedSprite2D" parent="."]
-position = Vector2(468, 291)
+position = Vector2(471, 309)
 scale = Vector2(2.346, 2)
 sprite_frames = SubResource("SpriteFrames_ttqak")
 frame_progress = 0.844454
@@ -178,3 +179,21 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_bsbab")
 theme_override_font_sizes/font_size = 24
 text = ">"
+
+[node name="ExitIcon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 899.0
+offset_top = 18.0
+offset_right = 949.0
+offset_bottom = 67.0
+script = ExtResource("9_h0qle")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="ExitIcon"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("1_bsbab")
+theme_override_font_sizes/font_size = 54
+text = "X"

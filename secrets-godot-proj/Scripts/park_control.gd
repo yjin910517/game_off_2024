@@ -21,5 +21,4 @@ func set_highlight_name(new_name):
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		emit_signal("highlight_clicked", highlight_name)
-		print("clicked highlight ", highlight_name)
 		highlight_icon.stop()
