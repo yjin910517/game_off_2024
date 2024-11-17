@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://doeqfqx5hjh2u"]
+[gd_scene load_steps=17 format=3 uid="uid://doeqfqx5hjh2u"]
 
 [ext_resource type="Script" path="res://Scripts/computer.gd" id="1_fcb2v"]
 [ext_resource type="Texture2D" uid="uid://chs0iunw4r2as" path="res://Arts/computer_background.png" id="2_dl6al"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="10_mcmdw"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="11_2u21f"]
 [ext_resource type="PackedScene" uid="uid://jqpc1g3p6a1t" path="res://Scenes/FileFolder.tscn" id="13_ji64b"]
+[ext_resource type="PackedScene" uid="uid://b3rkg6g1y33xd" path="res://Scenes/EndScene.tscn" id="16_o1tbr"]
 
 [node name="Computer" type="Control"]
 layout_mode = 3
@@ -273,4 +274,7 @@ theme_override_font_sizes/font_size = 54
 text = "X"
 
 [node name="FileFolder" parent="." instance=ExtResource("13_ji64b")]
-position = Vector2(1235, -504)
+position = Vector2(1273, -402)
+
+[node name="EndScene" parent="." instance=ExtResource("16_o1tbr")]
+layout_mode = 1

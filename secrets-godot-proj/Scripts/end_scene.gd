@@ -23,9 +23,6 @@ func _ready() -> void:
 	for line in line_list:
 		line.hide()
 	
-	# test only
-	start_scene()
-	
 
 func start_scene():
 	timer.wait_time = 2
@@ -40,7 +37,6 @@ func _on_timer_timeout():
 	
 	# move camera 
 	if current_line_idx == -1:
-		print("start moving camera")
 		camera.text_to_credit()
 		
 	else:

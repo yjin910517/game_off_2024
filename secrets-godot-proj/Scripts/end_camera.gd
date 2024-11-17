@@ -3,10 +3,12 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	enabled = false
 
 
 func text_to_credit():
+	
+	enabled = true
 	
 	var target_position = Vector2(0, 540)  
 

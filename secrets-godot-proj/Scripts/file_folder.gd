@@ -1,37 +1,31 @@
 extends Node2D
 
 
+signal show_end_scene()
+
+
 @onready var password_box = $PasswordInputBox
-@onready var folder_content = $FolderContent
-
-
-var pw_verified = false
+@onready var shield = $TransparentShield
 
 
 func _ready():
 	password_box.connect("password_verified", Callable(self, "_on_password_verified"))
 	password_box.connect("window_closed", Callable(self, "_on_window_closed"))
-	folder_content.connect("window_closed", Callable(self, "_on_window_closed"))
 	
-	password_box.hide()
-	folder_content.hide()
-
-
-# when the icon is clicked, choose content to display
-func display_window():
-	if pw_verified == true:
-		folder_content.show()
-		password_box.hide()
-	else:
-		password_box.show()
-		folder_content.hide()
-	
-	show()
+	shield.color = Color("#ffffff00")
+	shield.position = Vector2(0,0)
+	shield.z_index = 2 # already set in node inspector
+	shield.hide()
 		
 
 func _on_password_verified():
-	pw_verified = true
-	display_window()
+	
+	shield.show()
+	await get_tree().create_timer(2).timeout
+	shield.hide()
+	
+	emit_signal("show_end_scene")
+	password_box.hide()
 
 
 func _on_window_closed():

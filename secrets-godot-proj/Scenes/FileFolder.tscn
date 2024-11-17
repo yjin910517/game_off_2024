@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jqpc1g3p6a1t"]
+[gd_scene load_steps=7 format=3 uid="uid://jqpc1g3p6a1t"]
 
 [ext_resource type="Script" path="res://Scripts/password_input_box.gd" id="1_0kbx2"]
 [ext_resource type="Texture2D" uid="uid://cxheh626mgpei" path="res://Arts/computer_popup_window.png" id="1_76pe0"]
@@ -6,11 +6,9 @@
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="2_osx87"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="3_gmnex"]
 [ext_resource type="AudioStream" uid="uid://bcy3opswxcpg4" path="res://Audios/wrong_pw.wav" id="6_4tpuf"]
-[ext_resource type="Script" path="res://Scripts/folder_content.gd" id="6_rfctb"]
 
 [node name="FileFolder" type="Node2D"]
 script = ExtResource("1_eq5wo")
-metadata/_edit_group_ = true
 
 [node name="PasswordInputBox" type="Control" parent="."]
 layout_mode = 3
@@ -100,70 +98,15 @@ text = "X"
 [node name="Audio" type="AudioStreamPlayer2D" parent="PasswordInputBox"]
 stream = ExtResource("6_4tpuf")
 
-[node name="FolderContent" type="Control" parent="."]
-layout_mode = 3
+[node name="TransparentShield" type="ColorRect" parent="."]
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 688.0
-offset_top = 265.0
-offset_right = 688.0
-offset_bottom = 265.0
+offset_left = 784.0
+offset_top = -584.0
+offset_right = 1744.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_rfctb")
-metadata/_edit_group_ = true
-
-[node name="FolderTexture" type="TextureRect" parent="FolderContent"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 873.0
-offset_bottom = 467.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_76pe0")
-
-[node name="FolderTitle" type="Label" parent="FolderContent"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 17.0
-offset_right = 254.0
-offset_bottom = 54.0
-theme_override_fonts/font = ExtResource("2_osx87")
-theme_override_font_sizes/font_size = 32
-text = "FILES"
-
-[node name="FolderText" type="RichTextLabel" parent="FolderContent"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 71.0
-offset_top = 140.0
-offset_right = 808.0
-offset_bottom = 287.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_separation = 8
-theme_override_fonts/normal_font = ExtResource("2_osx87")
-theme_override_font_sizes/normal_font_size = 24
-text = "[REPLACE WITH FILE UI NODES]"
-
-[node name="ExitIcon" type="Control" parent="FolderContent"]
-anchors_preset = 0
-offset_left = 804.0
-offset_top = 8.0
-offset_right = 854.0
-offset_bottom = 57.0
-script = ExtResource("3_gmnex")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="FolderContent/ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
-theme_override_fonts/font = ExtResource("2_osx87")
-theme_override_font_sizes/font_size = 54
-text = "X"
+color = Color(1, 1, 1, 0.588235)

@@ -65,7 +65,7 @@ _data = {
 "thank_you": SubResource("Animation_w7b8q")
 }
 
-[node name="End Scene" type="Control"]
+[node name="EndScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +85,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.0705882, 0.0980392, 0.729412)
+color = Color(0, 0.0716667, 0.1, 1)
 
 [node name="Monologues" type="Node2D" parent="."]
 
