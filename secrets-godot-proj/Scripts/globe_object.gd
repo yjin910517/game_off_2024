@@ -10,6 +10,7 @@ signal milestone_completed(milestone_name)
 @onready var key_icon = $Content/Key
 @onready var action_button = $Content/ActionButton
 @onready var exit_icon = $ExitIcon
+@onready var audio = $Audio
 
 
 var status
@@ -38,7 +39,14 @@ func _on_target_clicked():
 
 
 func activate_globe():
+	# update status
 	status = status_val.active
+	
+	# play battery sound
+	audio.play()
+	
+	# activate map
+	await get_tree().create_timer(3).timeout
 	map.activate_map()
 
 

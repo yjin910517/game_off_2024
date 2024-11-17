@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://njuy78jabbgv"]
+[gd_scene load_steps=32 format=3 uid="uid://njuy78jabbgv"]
 
 [ext_resource type="Texture2D" uid="uid://b4dp33sk6677c" path="res://Arts/study_room.png" id="1_5g1kl"]
 [ext_resource type="Script" path="res://Scripts/study_room.gd" id="1_ph431"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/book_pile_control.gd" id="9_lyhns"]
 [ext_resource type="Script" path="res://Scripts/projector_control.gd" id="10_udi1g"]
 [ext_resource type="Script" path="res://Scripts/food_container_control.gd" id="11_jimfx"]
+[ext_resource type="AudioStream" uid="uid://lgpq0ctqaw5w" path="res://Audios/book_slide.wav" id="12_4n3xo"]
 [ext_resource type="Texture2D" uid="uid://b2qdek2swbeio" path="res://Arts/cat_food_refill_before.png" id="12_xh5um"]
 [ext_resource type="Script" path="res://Scripts/bowl_control.gd" id="13_2t1v8"]
 [ext_resource type="Texture2D" uid="uid://ciuuhbxhfm6s" path="res://Arts/cat_bowl_empty.png" id="14_j0lfm"]
@@ -205,6 +206,9 @@ offset_right = 243.0
 offset_bottom = 86.0
 color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("6_w6iad")
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="TopBookControl"]
+stream = ExtResource("12_4n3xo")
 
 [node name="GlobeControl" type="Control" parent="."]
 layout_mode = 3

@@ -8,6 +8,8 @@ signal target_clicked()
 @onready var audio = $Audio
 @onready var highlight = $Highlight
 
+var ACTIVATION_SOUND = preload("res://Audios/globe_activation.wav")
+var UNLOCK_SOUND = preload("res://Audios/globe_unlock.wav")
 
 var INACTIVE_MAP = preload("res://Arts/world_map_inactive.png")
 var ACTIVE_MAP = preload("res://Arts/world_map_activated.png")
@@ -26,6 +28,9 @@ func _ready() -> void:
 
 func _on_target_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# play unlock sound
+		audio.stream = UNLOCK_SOUND 
+		audio.play()
 		highlight.show()
 		highlight.play("default") # animation finish will trigger next action
 
@@ -35,7 +40,9 @@ func _on_highlight_finished():
 	
 
 func activate_map():
-	# play sound
+	# play activation sound
+	audio.stream = ACTIVATION_SOUND 
 	audio.play()
+	# show active map
 	map_texture.texture = ACTIVE_MAP
 	click_target.show()

@@ -232,9 +232,8 @@ func _on_dialogue_action_chosen(action_name):
 	
 		shield.show()
 		# to do: add sound effect
-		await get_tree().create_timer(1).timeout
 		globe_map.activate_globe()
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(5).timeout
 		shield.hide()
 		
 		# display next dialogue to complete the activation

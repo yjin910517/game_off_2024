@@ -4,6 +4,7 @@ extends Control
 signal passport_box_found(info_text)
 signal show_book_info(info_text)
 
+@onready var audio = $Audio
 
 var info_dataset = [
 	"???", # use zero index to store special info text for secrete pox
@@ -31,5 +32,6 @@ func _on_book_clicked(book_name):
 		emit_signal("passport_box_found", info_dataset[0])
 	else:
 		emit_signal("show_book_info", info_dataset[book_id])
+		audio.play()
 	
 	
