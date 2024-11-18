@@ -12,6 +12,8 @@ signal navigate_to_home(item_found)
 @onready var picnic_zoom = $PicnicZoom
 @onready var bench_zoom = $BenchZoom
 @onready var find_zoom = $FindZoom
+@onready var particles = $Particles
+@onready var shield = $TransparentShield
 
 
 var item_found
@@ -49,6 +51,16 @@ func _ready() -> void:
 	find_zoom.position = Vector2(0,0)
 	find_zoom.hide()
 	
+	particles.connect("effect_completed", Callable(self, "_show_highlight_display"))
+	particles.position = Vector2(0,0)
+	particles.hide()
+	
+	# Action block shield
+	shield.color = Color("#ffffff00")
+	shield.position = Vector2(0,0)
+	shield.z_index = 2 # already set in node inspector
+	shield.hide()
+	
 	latest_highlight_idx = 0
 	item_found = false
 	
@@ -81,18 +93,23 @@ func _on_highlight_clicked(highlight_name):
 		bench_zoom.show()
 		
 
-
 func _on_trigger_next_highlight():
 	latest_highlight_idx += 1
 	var new_highlight = highlight_list[latest_highlight_idx]
-	_show_highlight_display(new_highlight)
+	if new_highlight in ["picnic", "bench"]:
+		# animation completion will trigger next display
+		shield.show()
+		particles.move_to(new_highlight)
+	else:
+		_show_highlight_display(new_highlight)
 
 
 func _show_highlight_display(highlight_name):
+	shield.hide()
 	if highlight_name == "picnic":
-		picnic_control.show()
+		picnic_control.show_highlight()
 	if highlight_name == "bench":
-		bench_control.show()
+		bench_control.show_highlight()
 	if highlight_name == "find":
 		find_zoom.show()
 	

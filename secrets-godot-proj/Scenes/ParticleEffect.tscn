@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://26y2bun84o2m"]
+[gd_scene load_steps=8 format=3 uid="uid://26y2bun84o2m"]
 
-[ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_ds3fw"]
+[ext_resource type="Script" path="res://Scripts/particle_effect.gd" id="1_hv56h"]
 [ext_resource type="Texture2D" uid="uid://dwc5gojuxcxd4" path="res://Arts/vfx_particle.png" id="1_yxkjy"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_merya"]
@@ -10,19 +10,71 @@ emission_sphere_radius = 20.0
 gravity = Vector3(0, 50, 0)
 scale_max = 2.0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Animation" id="Animation_t3vb8"]
+resource_name = "picnic"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.46667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(755, 496), Vector2(509, 417), Vector2(335, 407)]
+}
 
-[node name="ParkLandscape" type="TextureRect" parent="."]
-offset_left = 3.0
-offset_top = 1.0
-offset_right = 963.0
-offset_bottom = 541.0
-texture = ExtResource("1_ds3fw")
-stretch_mode = 5
+[sub_resource type="Animation" id="Animation_tdcgo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(748, 486)]
+}
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(565, 386)
+[sub_resource type="Animation" id="Animation_avvk1"]
+resource_name = "bench"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(335, 401), Vector2(342, 285), Vector2(480, 195)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ct8fp"]
+_data = {
+"RESET": SubResource("Animation_tdcgo"),
+"bench": SubResource("Animation_avvk1"),
+"picnic": SubResource("Animation_t3vb8")
+}
+
+[node name="Particles" type="Node2D"]
+script = ExtResource("1_hv56h")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(748, 486)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_merya")
 texture = ExtResource("1_yxkjy")
 randomness = 0.3
+
+[node name="Movements" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ct8fp")
+}

@@ -16,7 +16,12 @@ func _ready():
 
 func set_highlight_name(new_name):
 	highlight_name = new_name
-	
+
+
+func show_highlight():
+	show()
+	highlight_icon.fade_in()
+
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

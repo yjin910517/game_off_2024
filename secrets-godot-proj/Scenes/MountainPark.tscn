@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://csvyfdimksl8c"]
+[gd_scene load_steps=24 format=3 uid="uid://csvyfdimksl8c"]
 
 [ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_445ye"]
 [ext_resource type="Script" path="res://Scripts/mountain_park.gd" id="1_iruct"]
@@ -10,13 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_2niwr"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_ibwwn"]
 [ext_resource type="Texture2D" uid="uid://uia6mu3krgxr" path="res://Arts/park_zoom_in_sign.png" id="7_8w26x"]
+[ext_resource type="Shader" path="res://Shaders/EndScene.gdshader" id="10_u6ek0"]
 [ext_resource type="Texture2D" uid="uid://d1suh781gr730" path="res://Arts/park_zoom_in_picnic.png" id="11_elvs2"]
+[ext_resource type="Script" path="res://Scripts/highlight_effect.gd" id="11_krbx1"]
 [ext_resource type="Script" path="res://Scripts/scene_nav.gd" id="12_bfrqh"]
 [ext_resource type="Texture2D" uid="uid://76m64638ebt7" path="res://Arts/nav_icon_right.png" id="13_607sn"]
 [ext_resource type="Texture2D" uid="uid://cnhnrbq3gkayj" path="res://Arts/park_zoom_in_bench.png" id="14_8k5ob"]
 [ext_resource type="Script" path="res://Scripts/park_find.gd" id="15_8mstf"]
 [ext_resource type="Texture2D" uid="uid://d0bccmay7fhu6" path="res://Arts/globe_power_icon.png" id="16_63ygj"]
 [ext_resource type="Script" path="res://Scripts/action_button.gd" id="17_jp8hv"]
+[ext_resource type="PackedScene" uid="uid://26y2bun84o2m" path="res://Scenes/ParticleEffect.tscn" id="18_y1tw3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_edpmx"]
 animations = [{
@@ -31,6 +34,14 @@ animations = [{
 "name": &"default",
 "speed": 3.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o00h"]
+shader = ExtResource("10_u6ek0")
+shader_parameter/fade_amount = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcoeh"]
+shader = ExtResource("10_u6ek0")
+shader_parameter/fade_amount = 1.0
 
 [node name="MountainPark" type="Node2D"]
 script = ExtResource("1_iruct")
@@ -115,10 +126,12 @@ color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("4_jwx1c")
 
 [node name="HighlightIcon" type="AnimatedSprite2D" parent="PicnicControl"]
+material = SubResource("ShaderMaterial_2o00h")
 position = Vector2(58, 12)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_edpmx")
 frame_progress = 0.0234124
+script = ExtResource("11_krbx1")
 
 [node name="BenchControl" type="Control" parent="."]
 layout_mode = 3
@@ -141,10 +154,13 @@ color = Color(0.960784, 1, 0.623529, 0.568627)
 script = ExtResource("4_jwx1c")
 
 [node name="HighlightIcon" type="AnimatedSprite2D" parent="BenchControl"]
+material = SubResource("ShaderMaterial_lcoeh")
+use_parent_material = true
 position = Vector2(9, 32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_edpmx")
 frame_progress = 0.0234124
+script = ExtResource("11_krbx1")
 
 [node name="EntryZoom" type="Control" parent="."]
 layout_mode = 3
@@ -489,3 +505,18 @@ offset_bottom = 54.0
 theme_override_fonts/font = ExtResource("6_ibwwn")
 theme_override_font_sizes/font_size = 54
 text = "X"
+
+[node name="Particles" parent="." instance=ExtResource("18_y1tw3")]
+
+[node name="TransparentShield" type="ColorRect" parent="."]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 784.0
+offset_top = -584.0
+offset_right = 1744.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.588235)
