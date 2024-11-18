@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://26y2bun84o2m"]
+
+[ext_resource type="Texture2D" uid="uid://y3gs4cndmnne" path="res://Arts/park_landscape.png" id="1_ds3fw"]
+[ext_resource type="Texture2D" uid="uid://dwc5gojuxcxd4" path="res://Arts/vfx_particle.png" id="1_yxkjy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_merya"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector3(0, 50, 0)
+scale_max = 2.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParkLandscape" type="TextureRect" parent="."]
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 963.0
+offset_bottom = 541.0
+texture = ExtResource("1_ds3fw")
+stretch_mode = 5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(565, 386)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_merya")
+texture = ExtResource("1_yxkjy")
+randomness = 0.3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://njuy78jabbgv"]
+[gd_scene load_steps=33 format=3 uid="uid://njuy78jabbgv"]
 
 [ext_resource type="Texture2D" uid="uid://b4dp33sk6677c" path="res://Arts/study_room.png" id="1_5g1kl"]
 [ext_resource type="Script" path="res://Scripts/study_room.gd" id="1_ph431"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bdd8tpm11h6ib" path="res://Arts/passport_small_icon.png" id="18_isux8"]
 [ext_resource type="PackedScene" uid="uid://bm52apdqmvtot" path="res://Scenes/PassportContent.tscn" id="18_w03qr"]
 [ext_resource type="PackedScene" uid="uid://ce35uuxi5fq6j" path="res://Scenes/Projector.tscn" id="20_4islk"]
+[ext_resource type="AudioStream" uid="uid://hdytnpobtbjk" path="res://Audios/cat_food_pour.wav" id="22_nemov"]
 [ext_resource type="PackedScene" uid="uid://ssue0m4qp6u0" path="res://Scenes/GlobeMap.tscn" id="22_op86r"]
 [ext_resource type="PackedScene" uid="uid://bicqk55ccy7if" path="res://Scenes/Vault.tscn" id="25_j0rmd"]
 
@@ -324,6 +325,7 @@ scale = Vector2(2.2, 2.2)
 texture = ExtResource("14_j0lfm")
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="BowlControl"]
+stream = ExtResource("22_nemov")
 
 [node name="HoverRect" type="ColorRect" parent="BowlControl"]
 layout_mode = 1

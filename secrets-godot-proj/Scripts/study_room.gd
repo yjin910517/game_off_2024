@@ -199,13 +199,13 @@ func _on_dialogue_action_chosen(action_name):
 		passport.show()
 		
 	if action_name == "feed":
-		toby_fed = true
-		bowl_control.add_food()
-		food_container_control.pour_food()
-		# to do: animation & sound
 		shield.show()
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(0.5).timeout
+		food_container_control.pour_food()
+		bowl_control.add_food()
+		await get_tree().create_timer(1.5).timeout
 		shield.hide()
+		toby_fed = true
 		
 		# show dialogue that leads to milestone scene of disk discovery
 		dialogue_box.associated_milestone = "disk"
@@ -244,7 +244,9 @@ func _on_dialogue_action_chosen(action_name):
 		has_vault_key = true
 		
 	if action_name == "vault":
-		vault.show()
+		shield.show()
+		await vault.open_door()
+		shield.hide()
 		vault_opened = true
 
 
@@ -398,6 +400,10 @@ func _on_vault_clicked():
 			info_text = dialogue_dataset["vault_open"]["text_data"]
 			btn_data = dialogue_dataset["vault_open"]["btn_data"]
 			dialogue_box.display_dialogue(info_text, btn_data)
+		else:
+			shield.show()
+			await vault.open_door()
+			shield.hide()
 	else:
 		info_text = dialogue_dataset["vault_locked"]["text_data"]
 		dialogue_box.display_dialogue(info_text, null)

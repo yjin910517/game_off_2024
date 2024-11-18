@@ -17,12 +17,13 @@ func _ready() -> void:
 	commute.connect("arrive_at", Callable(self, "_on_arrive_at"))
 	
 	# define the game start scene here
-	computer.show()
+	computer.hide()
 	study_room.hide()
 	mountain_park.hide()
 	commute.hide()
 	
 	audio.play()
+	_on_open_computer()
 
 
 # home to park
@@ -48,11 +49,14 @@ func _on_arrive_at(destination):
 # computer to room
 func _on_leave_computer():
 	study_room.show()
+	audio.volume_db = -4
+	
 
 
 # room to computer 
 func _on_open_computer():
 	computer.show()
+	audio.volume_db = -10
 
 
 # end scene

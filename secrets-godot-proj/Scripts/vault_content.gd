@@ -9,7 +9,7 @@ extends Control
 
 @onready var zoom_in = $ZoomIn
 @onready var exit_icon = $ExitIcon
-
+@onready var audio = $Audio
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +34,12 @@ func _ready() -> void:
 	zoom_in.connect("zoom_closed", Callable(self, "_on_zoom_closed"))
 
 
+func open_door():
+	audio.play()
+	await get_tree().create_timer(1).timeout
+	show()
+	
+
 func _on_item_clicked(control_node):
 
 	var zoom_in_name = control_node.item_name
@@ -48,7 +54,7 @@ func _update_icon_display(control_node):
 	var all_icons = icon_container.get_children()
 	for node in all_icons:
 		if node == control_node:
-			node.highlight_icon()
+			node.activate_icon()
 		else:
 			node.deactivate_icon()
 

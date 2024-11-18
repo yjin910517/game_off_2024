@@ -21,9 +21,11 @@ func _ready():
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		emit_signal("food_bowl_clicked")
-
+		
 
 func add_food():
-	sprite.texture = bowl_filled_texture
-	# To do: play sound effect
 	hover.hide()
+	# play sound before show full bowl
+	audio.play()
+	await get_tree().create_timer(0.5).timeout
+	sprite.texture = bowl_filled_texture

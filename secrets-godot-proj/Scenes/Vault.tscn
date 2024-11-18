@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bicqk55ccy7if"]
 
 [ext_resource type="Script" path="res://Scripts/vault_content.gd" id="1_vbtk0"]
+[ext_resource type="AudioStream" uid="uid://bd7i83732vxpc" path="res://Audios/vault_door_open.wav" id="2_b43bl"]
 [ext_resource type="Script" path="res://Scripts/vault_item_control.gd" id="2_ro1i8"]
 [ext_resource type="Texture2D" uid="uid://ccljap8yqk53o" path="res://Arts/vault_content_files.png" id="3_7llo6"]
-[ext_resource type="Script" path="res://Scripts/hover_rect.gd" id="4_6rn20"]
 [ext_resource type="Texture2D" uid="uid://4ji6od2w02p" path="res://Arts/vault_content_books.png" id="5_3eoch"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_fhpj4"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_tc1wu"]
@@ -32,6 +32,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.0705882, 0.0980392, 1)
 
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_b43bl")
+
 [node name="IconContainer" type="Node2D" parent="."]
 
 [node name="DocControl" type="Control" parent="IconContainer"]
@@ -51,16 +54,6 @@ offset_bottom = 54.0
 scale = Vector2(2.7875, 3.1)
 texture = ExtResource("3_7llo6")
 stretch_mode = 5
-
-[node name="HoverRect" type="ColorRect" parent="IconContainer/DocControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.960784, 1, 0.623529, 0.568627)
-script = ExtResource("4_6rn20")
 
 [node name="BlockRect" type="ColorRect" parent="IconContainer/DocControl"]
 layout_mode = 1
@@ -89,16 +82,6 @@ scale = Vector2(2.7875, 3.1)
 texture = ExtResource("5_3eoch")
 stretch_mode = 5
 
-[node name="HoverRect" type="ColorRect" parent="IconContainer/PhotoBookControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.960784, 1, 0.623529, 0.568627)
-script = ExtResource("4_6rn20")
-
 [node name="BlockRect" type="ColorRect" parent="IconContainer/PhotoBookControl"]
 layout_mode = 1
 anchors_preset = 15
@@ -125,16 +108,6 @@ offset_bottom = 58.0
 scale = Vector2(2.7875, 3.1)
 texture = ExtResource("6_wny44")
 stretch_mode = 5
-
-[node name="HoverRect" type="ColorRect" parent="IconContainer/LetterControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.960784, 1, 0.623529, 0.568627)
-script = ExtResource("4_6rn20")
 
 [node name="BlockRect" type="ColorRect" parent="IconContainer/LetterControl"]
 layout_mode = 1
@@ -163,16 +136,6 @@ scale = Vector2(2.7875, 3.1)
 texture = ExtResource("7_168vo")
 stretch_mode = 5
 
-[node name="HoverRect" type="ColorRect" parent="IconContainer/TicketControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.960784, 1, 0.623529, 0.568627)
-script = ExtResource("4_6rn20")
-
 [node name="BlockRect" type="ColorRect" parent="IconContainer/TicketControl"]
 layout_mode = 1
 anchors_preset = 15
@@ -199,16 +162,6 @@ offset_bottom = 36.0
 scale = Vector2(2.7875, 3.1)
 texture = ExtResource("8_ec3ih")
 stretch_mode = 5
-
-[node name="HoverRect" type="ColorRect" parent="IconContainer/ClueControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.960784, 1, 0.623529, 0.568627)
-script = ExtResource("4_6rn20")
 
 [node name="BlockRect" type="ColorRect" parent="IconContainer/ClueControl"]
 layout_mode = 1
