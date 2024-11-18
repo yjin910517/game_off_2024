@@ -1,6 +1,7 @@
 extends Control
 
 signal back_to_room()
+signal end_scene_started()
 
 @onready var home_nav = $HomeNav
 @onready var read_me_icon = $ReadMeIcon
@@ -74,4 +75,6 @@ func _update_nav_display():
 
 
 func _on_show_end_scene():
+	# let main stop bgm
+	emit_signal("end_scene_started")
 	end_scene.start_scene()

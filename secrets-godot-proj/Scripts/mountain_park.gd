@@ -51,7 +51,7 @@ func _ready() -> void:
 	
 	latest_highlight_idx = 0
 	item_found = false
-
+	
 
 func _on_navigation_clicked():
 	emit_signal("navigate_to_home", item_found)

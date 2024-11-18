@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://xp84ldejwnxo"]
+
+[ext_resource type="Texture2D" uid="uid://dvkesisxhss0" path="res://Arts/community_map/community_map1.png" id="1_vg2a2"]
+[ext_resource type="Script" path="res://Scripts/commute.gd" id="1_wjj4s"]
+[ext_resource type="Texture2D" uid="uid://crm6kh0xs25mk" path="res://Arts/community_map/community_map2.png" id="2_dkalp"]
+[ext_resource type="Texture2D" uid="uid://bl47rcm11iv10" path="res://Arts/community_map/community_map3.png" id="3_0wgc5"]
+[ext_resource type="Texture2D" uid="uid://s8cybexmhb7j" path="res://Arts/community_map/community_map4.png" id="4_evj28"]
+[ext_resource type="Texture2D" uid="uid://dpn7u7jvqq5y" path="res://Arts/community_map/community_map5.png" id="5_nvob4"]
+[ext_resource type="Texture2D" uid="uid://cgupyclhehr6x" path="res://Arts/community_map/community_map6.png" id="6_qexk3"]
+[ext_resource type="Texture2D" uid="uid://8qjqml0w3q58" path="res://Arts/community_map/community_map7.png" id="7_23nq7"]
+[ext_resource type="Texture2D" uid="uid://dqg8cyg46asem" path="res://Arts/community_map/community_map8.png" id="8_cjoxw"]
+[ext_resource type="Texture2D" uid="uid://byw8fyti7cfnl" path="res://Arts/community_map/community_map9.png" id="9_bv17c"]
+[ext_resource type="Texture2D" uid="uid://b5gu31ao2msh1" path="res://Arts/community_map/community_map10.png" id="10_i4lrf"]
+[ext_resource type="Texture2D" uid="uid://bg2jsx6vwnwrx" path="res://Arts/community_map/community_map11.png" id="11_j6af6"]
+[ext_resource type="Texture2D" uid="uid://cea7likpyikvb" path="res://Arts/community_map/community_map12.png" id="12_hccec"]
+[ext_resource type="Texture2D" uid="uid://c5m52q2kuvbrn" path="res://Arts/community_map/community_map13.png" id="13_h2kxy"]
+[ext_resource type="Texture2D" uid="uid://dnxldinw1y7sj" path="res://Arts/community_map/community_map14.png" id="14_jy2d0"]
+[ext_resource type="Texture2D" uid="uid://chbs8rtguxx2w" path="res://Arts/community_map/community_map15.png" id="15_vwt0d"]
+[ext_resource type="Texture2D" uid="uid://hfa5eqdi46tj" path="res://Arts/community_map/community_map16.png" id="16_hyphp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_thtu7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vg2a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dkalp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0wgc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_evj28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nvob4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qexk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_23nq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cjoxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bv17c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i4lrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j6af6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hccec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_h2kxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jy2d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vwt0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hyphp")
+}],
+"loop": false,
+"name": &"home_to_park",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_hyphp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vwt0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jy2d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_h2kxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hccec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j6af6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i4lrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bv17c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cjoxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_23nq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qexk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nvob4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_evj28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0wgc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dkalp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vg2a2")
+}],
+"loop": false,
+"name": &"park_to_home",
+"speed": 5.0
+}]
+
+[node name="Commute" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wjj4s")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 270)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_thtu7")
+animation = &"park_to_home"
+frame = 15
+frame_progress = 1.0
