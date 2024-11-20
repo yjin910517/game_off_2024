@@ -7,6 +7,7 @@ signal open_computer()
 
 # children node references
 @onready var computer_control = $ComputerControl
+@onready var flyer_control = $FlyerControl
 @onready var calendar_control = $CalendarControl
 @onready var vault_control = $VaultControl
 @onready var top_book_control = $TopBookControl
@@ -26,6 +27,8 @@ signal open_computer()
 @onready var milestone_scene = $Milestone
 
 # object scenes
+@onready var flyer = $Flyers
+@onready var calendar = $Calendar
 @onready var passport = $PassportContent 
 @onready var globe_map = $GlobeMap
 @onready var projector = $Projector
@@ -111,6 +114,7 @@ func _ready():
 	
 	# Interactive objects
 	computer_control.connect("computer_clicked", Callable(self, "_on_computer_clicked"))
+	flyer_control.connect("flyer_clicked", Callable(self, "_on_flyer_clicked"))
 	calendar_control.connect("calendar_clicked", Callable(self, "_on_calendar_clicked"))
 	vault_control.connect("vault_clicked", Callable(self, "_on_vault_clicked"))
 	top_book_control.connect("passport_box_found", Callable(self, "_on_passport_box_found"))
@@ -146,6 +150,16 @@ func _ready():
 	milestone_scene.z_index = 1 # already set in node inspector
 	milestone_scene.hide()
 
+	# Calendar scene
+	flyer.position = Vector2(0,0)
+	flyer.z_index = 1 # already set in node inspector
+	flyer.hide()
+	
+	# Calendar scene
+	calendar.position = Vector2(0,0)
+	calendar.z_index = 1 # already set in node inspector
+	calendar.hide()
+	
 	# Passport scene
 	passport.position = Vector2(0,0)
 	passport.z_index = 1 # already set in node inspector
@@ -286,6 +300,12 @@ func _on_computer_clicked():
 func _on_calendar_clicked():
 	# test only
 	has_globe_key = true
+	
+	calendar.show()
+
+
+func _on_flyer_clicked():
+	flyer.show()
 	
 
 func _on_show_book_info(info_text):

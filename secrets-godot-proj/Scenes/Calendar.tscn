@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh3oqtk3x67ea"]
+
+[ext_resource type="Texture2D" uid="uid://bnddvajnwa87b" path="res://Arts/calendar_zoom_in.png" id="1_b3u2y"]
+[ext_resource type="Script" path="res://Scripts/calendar.gd" id="1_k2c62"]
+[ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="2_3swau"]
+[ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="3_oreky"]
+
+[node name="Calendar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k2c62")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.984314, 0.890196, 0.858824, 1)
+
+[node name="Display" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 959.0
+offset_bottom = 539.0
+texture = ExtResource("1_b3u2y")
+stretch_mode = 5
+
+[node name="ExitIcon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 899.0
+offset_top = 18.0
+offset_right = 949.0
+offset_bottom = 67.0
+script = ExtResource("2_3swau")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="ExitIcon"]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
+theme_override_fonts/font = ExtResource("3_oreky")
+theme_override_font_sizes/font_size = 44
+text = "X"

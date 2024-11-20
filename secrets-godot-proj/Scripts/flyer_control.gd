@@ -1,7 +1,7 @@
 extends Control
 
 
-signal calendar_clicked()
+signal flyer_clicked()
 
 
 func _ready():
@@ -10,4 +10,4 @@ func _ready():
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		emit_signal("calendar_clicked")
+		emit_signal("flyer_clicked")
