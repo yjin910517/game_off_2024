@@ -19,7 +19,7 @@ func _ready() -> void:
 func set_button_data(btn_data):
 	option_value = btn_data["value"]
 	text_node.text = btn_data["label"]
-	
+
 
 func _on_mouse_entered():
 	highlight.show()

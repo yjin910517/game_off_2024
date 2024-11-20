@@ -176,12 +176,15 @@ script = ExtResource("2_tpbax")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("3_k15i8")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_iy2r3")

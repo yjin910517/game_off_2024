@@ -87,3 +87,6 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_73b23")
 theme_override_font_sizes/font_size = 32
 text = ">"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

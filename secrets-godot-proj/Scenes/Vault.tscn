@@ -183,11 +183,11 @@ script = ExtResource("5_fhpj4")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("6_tc1wu")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
 
 [node name="ZoomIn" type="Control" parent="."]

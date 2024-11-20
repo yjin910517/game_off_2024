@@ -11,11 +11,13 @@ signal milestone_completed(milestone_name)
 @onready var action_button = $Content/ActionButton
 @onready var exit_icon = $ExitIcon
 @onready var audio = $Audio
+@onready var timer = $Timer
 
 
 var status
 enum status_val {inactive, active, opened} # inactive, active, opened
 var milestone_name = "key"
+var is_first_show = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +25,7 @@ func _ready() -> void:
 	map.connect("target_clicked", Callable(self, "_on_target_clicked"))
 	action_button.connect("action_clicked", Callable(self, "_complete_milestone"))
 	exit_icon.connect("exit_clicked", Callable(self, "_on_exit_clicked"))
+	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	
 	map.position = Vector2(0,0)
 	content.position = Vector2(0,0)
@@ -65,10 +68,22 @@ func _complete_milestone(e):
 func display_scene():
 	if status == status_val.opened:
 		map.hide()
+		if is_first_show:
+			# temporarily hide action button
+			action_button.hide()
+			exit_icon.hide()
+			timer.wait_time = 3
+			timer.start() # timer timeout will trigger button display
+			is_first_show = false
 		content.show()
+
 	else:
 		map.show()
 		content.hide()
 	
 	show()
 	
+	
+func _on_timer_timeout():
+	action_button.show()
+	exit_icon.show()

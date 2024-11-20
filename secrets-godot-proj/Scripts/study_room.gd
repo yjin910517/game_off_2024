@@ -266,7 +266,7 @@ func _on_open_milestone(milestone_name):
 		# show the custom reaction or scene
 		if milestone_name == "projector":
 			projector.milestone_name = "park"
-			projector.show()
+			projector.display_scene()
 			disk_played = true
 			if has_globe_key == false:
 				park_nav.show()

@@ -192,11 +192,11 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="EntryZoom/ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("6_ibwwn")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
 
 [node name="InfoText" type="RichTextLabel" parent="EntryZoom"]
@@ -250,11 +250,11 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PicnicZoom/ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("6_ibwwn")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
 
 [node name="InfoText" type="RichTextLabel" parent="PicnicZoom"]
@@ -308,11 +308,11 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="BenchZoom/ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("6_ibwwn")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
 
 [node name="InfoText" type="RichTextLabel" parent="BenchZoom"]
@@ -499,12 +499,15 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="FindZoom/ExitIcon"]
-layout_mode = 0
-offset_right = 54.0
-offset_bottom = 54.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("6_ibwwn")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 44
 text = "X"
+
+[node name="Timer" type="Timer" parent="FindZoom"]
+one_shot = true
 
 [node name="Particles" parent="." instance=ExtResource("18_y1tw3")]
 
