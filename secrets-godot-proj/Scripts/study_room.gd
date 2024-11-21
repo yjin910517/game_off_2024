@@ -297,10 +297,7 @@ func _on_computer_clicked():
 	hide()
 	
 
-func _on_calendar_clicked():
-	# test only
-	has_globe_key = true
-	
+func _on_calendar_clicked():	
 	calendar.show()
 
 

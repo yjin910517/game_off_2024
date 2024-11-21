@@ -1,16 +1,173 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3rkg6g1y33xd"]
+[gd_scene load_steps=42 format=3 uid="uid://b3rkg6g1y33xd"]
 
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="1_j31hf"]
 [ext_resource type="Script" path="res://Scripts/end_scene.gd" id="1_sknmn"]
 [ext_resource type="Texture2D" uid="uid://4ji6od2w02p" path="res://Arts/vault_content_books.png" id="2_m5e8a"]
 [ext_resource type="AudioStream" uid="uid://f8luaxa2a7mx" path="res://Audios/screts-bgm-3.wav" id="2_ok75g"]
+[ext_resource type="Script" path="res://Scripts/end_transition.gd" id="2_qlona"]
 [ext_resource type="Shader" path="res://Shaders/EndScene.gdshader" id="3_fl57d"]
+[ext_resource type="Texture2D" uid="uid://cf21l6qrds8o2" path="res://Arts/end_scene_files/computer_file_window2.png" id="3_mtx5k"]
+[ext_resource type="Script" path="res://Scripts/end_letter_scroll.gd" id="4_0nud7"]
+[ext_resource type="Texture2D" uid="uid://dt4osvfa1ikod" path="res://Arts/end_scene_files/computer_file_window3.png" id="4_rqc2y"]
+[ext_resource type="Texture2D" uid="uid://taqhnucf6fsx" path="res://Arts/end_scene_files/computer_file_window4.png" id="5_l113o"]
 [ext_resource type="Script" path="res://Scripts/end_line_effect.gd" id="5_n017a"]
 [ext_resource type="Script" path="res://Scripts/end_camera.gd" id="5_ob2gn"]
+[ext_resource type="Texture2D" uid="uid://bj2qh7nwxfh00" path="res://Arts/end_scene_files/computer_file_window5.png" id="6_kbqsw"]
+[ext_resource type="Texture2D" uid="uid://dmmgh3ygkt3hp" path="res://Arts/end_scene_files/computer_file_window6.png" id="7_17k12"]
+[ext_resource type="Texture2D" uid="uid://dr6hsghobbkgg" path="res://Arts/end_scene_files/computer_file_window7.png" id="8_yqbmm"]
+[ext_resource type="Texture2D" uid="uid://7pq0ngmcfofe" path="res://Arts/end_scene_files/computer_file_window8.png" id="9_5wr1q"]
+[ext_resource type="Texture2D" uid="uid://c7kgbkgdh86yu" path="res://Arts/end_scene_files/computer_file_window9.png" id="11_r4tk7"]
+[ext_resource type="Texture2D" uid="uid://cq3lykij7efna" path="res://Arts/end_scene_files/computer_file_window10.png" id="12_2xnec"]
+[ext_resource type="Texture2D" uid="uid://cn664kjossb47" path="res://Arts/end_scene_files/computer_file_window11.png" id="13_8dxc8"]
+[ext_resource type="Texture2D" uid="uid://dljafkm2q3ikj" path="res://Arts/end_scene_files/computer_file_window12.png" id="14_jpydd"]
+[ext_resource type="Texture2D" uid="uid://dqefijrtae5yv" path="res://Arts/end_scene_files/computer_file_window13.png" id="15_ar8mo"]
+[ext_resource type="Texture2D" uid="uid://c578oc11ct1v" path="res://Arts/end_scene_files/computer_file_window14.png" id="16_hgfp1"]
+[ext_resource type="Texture2D" uid="uid://dtw1mbbkhoimo" path="res://Arts/end_scene_files/computer_file_window15.png" id="17_lswvy"]
+[ext_resource type="Texture2D" uid="uid://bxepd4ktnpcrm" path="res://Arts/end_scene_files/computer_file_window16.png" id="18_b0deu"]
+[ext_resource type="Texture2D" uid="uid://8yn5lk0h001k" path="res://Arts/end_scene_files/computer_file_window17.png" id="19_teody"]
+[ext_resource type="Script" path="res://Scripts/end_letter_control.gd" id="20_dlcl1"]
+[ext_resource type="Texture2D" uid="uid://be630yplctmua" path="res://Arts/highlight_marker2.png" id="22_jijtn"]
+[ext_resource type="Texture2D" uid="uid://chw6j7s5i46bk" path="res://Arts/highlight_marker1.png" id="23_pqglx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vvbe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mtx5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rqc2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l113o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kbqsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_17k12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yqbmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5wr1q")
+}],
+"loop": true,
+"name": &"scroll_loop",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_r4tk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2xnec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8dxc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jpydd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ar8mo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hgfp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lswvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_b0deu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_teody")
+}],
+"loop": false,
+"name": &"scroll_to_end",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qn2fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_jijtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_pqglx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3j5du"]
 shader = ExtResource("3_fl57d")
 shader_parameter/fade_amount = 1.0
+
+[sub_resource type="Animation" id="Animation_jm1x5"]
+resource_name = "color_fade"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.0716667, 0.1, 1), Color(0, 0.0716667, 0.1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hxex4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.0716667, 0.1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_275uj"]
+_data = {
+"RESET": SubResource("Animation_hxex4"),
+"color_fade": SubResource("Animation_jm1x5")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qkrt8"]
 shader = ExtResource("3_fl57d")
@@ -75,10 +232,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sknmn")
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ok75g")
+[node name="Transition" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qlona")
+metadata/_edit_group_ = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="FileRoll" type="AnimatedSprite2D" parent="Transition"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6vvbe")
+animation = &"scroll_loop"
+centered = false
+
+[node name="LetterControl" type="Control" parent="Transition"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 109.0
+offset_right = 275.0
+offset_bottom = 230.0
+script = ExtResource("20_dlcl1")
+metadata/_edit_group_ = true
+
+[node name="HighlightIcon" type="AnimatedSprite2D" parent="Transition/LetterControl"]
+position = Vector2(97, 89)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qn2fx")
+
+[node name="ColorScreen" type="ColorRect" parent="Transition"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,9 +273,53 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.0716667, 0.1, 1)
 
-[node name="Monologues" type="Node2D" parent="."]
+[node name="Text" type="RichTextLabel" parent="Transition"]
+material = SubResource("ShaderMaterial_3j5du")
+offset_left = 38.0
+offset_top = 114.0
+offset_right = 915.0
+offset_bottom = 409.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("1_j31hf")
+theme_override_font_sizes/normal_font_size = 20
+text = "Everything is here - meticulously sorted and easy to find. 
 
-[node name="Line1" type="RichTextLabel" parent="Monologues"]
+Elysia must have spent so much time preparing this for me, knowing I’d face this alone. 
+
+Even now, after she’s gone, she’s making sure I’m taken care of.
+"
+script = ExtResource("5_n017a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_275uj")
+}
+
+[node name="Timer" type="Timer" parent="Transition"]
+one_shot = true
+
+[node name="LetterScroll" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1106.0
+offset_top = 72.0
+offset_right = 2066.0
+offset_bottom = 1152.0
+script = ExtResource("4_0nud7")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="LetterScroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0716667, 0.1, 1)
+
+[node name="Monologues" type="Node2D" parent="LetterScroll"]
+
+[node name="Line1" type="RichTextLabel" parent="LetterScroll/Monologues"]
 material = SubResource("ShaderMaterial_3j5du")
 offset_left = 44.0
 offset_top = 45.0
@@ -103,7 +333,7 @@ text = "My dearest Mira,
 "
 script = ExtResource("5_n017a")
 
-[node name="Line2" type="RichTextLabel" parent="Monologues"]
+[node name="Line2" type="RichTextLabel" parent="LetterScroll/Monologues"]
 material = SubResource("ShaderMaterial_qkrt8")
 offset_left = 44.0
 offset_top = 90.0
@@ -117,7 +347,7 @@ text = "If you're reading this, I’m already gone. But know that my love for yo
 "
 script = ExtResource("5_n017a")
 
-[node name="Line3" type="RichTextLabel" parent="Monologues"]
+[node name="Line3" type="RichTextLabel" parent="LetterScroll/Monologues"]
 material = SubResource("ShaderMaterial_hqydf")
 offset_left = 44.0
 offset_top = 230.0
@@ -131,7 +361,7 @@ text = "This puzzle was my way of saying thank you for the life we shared, for b
 "
 script = ExtResource("5_n017a")
 
-[node name="Line4" type="RichTextLabel" parent="Monologues"]
+[node name="Line4" type="RichTextLabel" parent="LetterScroll/Monologues"]
 material = SubResource("ShaderMaterial_u8mjn")
 offset_left = 44.0
 offset_top = 340.0
@@ -145,7 +375,7 @@ text = "Keep living, my love. Carry our story with you, but don’t let it hold 
 "
 script = ExtResource("5_n017a")
 
-[node name="Line5" type="RichTextLabel" parent="Monologues"]
+[node name="Line5" type="RichTextLabel" parent="LetterScroll/Monologues"]
 material = SubResource("ShaderMaterial_kin75")
 offset_left = 44.0
 offset_top = 440.0
@@ -160,7 +390,7 @@ Elysia
 "
 script = ExtResource("5_n017a")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="LetterScroll"]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 693.0
@@ -170,7 +400,7 @@ scale = Vector2(2.7875, 3.1)
 texture = ExtResource("2_m5e8a")
 stretch_mode = 5
 
-[node name="Thanks" type="RichTextLabel" parent="."]
+[node name="Thanks" type="RichTextLabel" parent="LetterScroll"]
 layout_mode = 0
 offset_left = 174.0
 offset_top = 860.0
@@ -183,13 +413,13 @@ theme_override_font_sizes/normal_font_size = 28
 text = "Thank you for playing!
 "
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Thanks"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LetterScroll/Thanks"]
 libraries = {
 "": SubResource("AnimationLibrary_7awdy")
 }
 autoplay = "thank_you"
 
-[node name="Credits" type="RichTextLabel" parent="."]
+[node name="Credits" type="RichTextLabel" parent="LetterScroll"]
 layout_mode = 0
 offset_left = 249.0
 offset_top = 961.0
@@ -201,9 +431,12 @@ theme_override_fonts/normal_font = ExtResource("1_j31hf")
 theme_override_font_sizes/normal_font_size = 20
 text = "Made by TJ @birdnofoot"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="LetterScroll"]
 one_shot = true
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="BGM" type="AudioStreamPlayer2D" parent="LetterScroll"]
+stream = ExtResource("2_ok75g")
+
+[node name="Camera" type="Camera2D" parent="LetterScroll"]
 anchor_mode = 0
 script = ExtResource("5_ob2gn")

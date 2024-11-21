@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dfcixpknkx4d3" path="res://Arts/readme_icon.png" id="3_rnd0k"]
 [ext_resource type="Texture2D" uid="uid://ce71qdp0ppuk1" path="res://Arts/todo_icon.png" id="4_x7e7e"]
 [ext_resource type="Texture2D" uid="uid://b8f8rqm8jbggo" path="res://Arts/folder_icon.png" id="5_0qhbk"]
-[ext_resource type="Texture2D" uid="uid://76m64638ebt7" path="res://Arts/nav_icon_right.png" id="5_hslt1"]
+[ext_resource type="Texture2D" uid="uid://c1v033pjwk7cc" path="res://Arts/nav_icon_right.png" id="5_hslt1"]
 [ext_resource type="Script" path="res://Scripts/to_do_icon.gd" id="5_rms0h"]
 [ext_resource type="Script" path="res://Scripts/file_folder_icon.gd" id="7_fewha"]
 [ext_resource type="Texture2D" uid="uid://cxheh626mgpei" path="res://Arts/computer_popup_window.png" id="9_tt7ds"]
@@ -278,3 +278,7 @@ position = Vector2(1273, -402)
 
 [node name="EndScene" parent="." instance=ExtResource("16_o1tbr")]
 layout_mode = 1
+offset_left = 1513.0
+offset_top = 231.0
+offset_right = 1513.0
+offset_bottom = 771.0

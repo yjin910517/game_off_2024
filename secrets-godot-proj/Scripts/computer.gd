@@ -77,4 +77,4 @@ func _update_nav_display():
 func _on_show_end_scene():
 	# let main stop bgm
 	emit_signal("end_scene_started")
-	end_scene.start_scene()
+	end_scene.play_scene()

@@ -25,6 +25,7 @@ grow_vertical = 2
 color = Color(0, 0.0716667, 0.1, 0.682353)
 
 [node name="Display" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 959.0
 offset_bottom = 539.0
 texture = ExtResource("1_s0sk5")
