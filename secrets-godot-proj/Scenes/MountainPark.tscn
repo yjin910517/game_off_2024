@@ -8,13 +8,13 @@
 [ext_resource type="Script" path="res://Scripts/hover_rect.gd" id="4_jwx1c"]
 [ext_resource type="Script" path="res://Scripts/park_zoom.gd" id="4_xk6mk"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="5_2niwr"]
+[ext_resource type="Texture2D" uid="uid://bl5l17so4cu6e" path="res://Arts/nav_icon_park.png" id="5_6ti53"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="6_ibwwn"]
 [ext_resource type="Texture2D" uid="uid://uia6mu3krgxr" path="res://Arts/park_zoom_in_sign.png" id="7_8w26x"]
 [ext_resource type="Shader" path="res://Shaders/EndScene.gdshader" id="10_u6ek0"]
 [ext_resource type="Texture2D" uid="uid://d1suh781gr730" path="res://Arts/park_zoom_in_picnic.png" id="11_elvs2"]
 [ext_resource type="Script" path="res://Scripts/highlight_effect.gd" id="11_krbx1"]
 [ext_resource type="Script" path="res://Scripts/scene_nav.gd" id="12_bfrqh"]
-[ext_resource type="Texture2D" uid="uid://76m64638ebt7" path="res://Arts/nav_icon_right.png" id="13_607sn"]
 [ext_resource type="Texture2D" uid="uid://cnhnrbq3gkayj" path="res://Arts/park_zoom_in_bench.png" id="14_8k5ob"]
 [ext_resource type="Script" path="res://Scripts/park_find.gd" id="15_8mstf"]
 [ext_resource type="Texture2D" uid="uid://d0bccmay7fhu6" path="res://Arts/globe_power_icon.png" id="16_63ygj"]
@@ -68,7 +68,7 @@ offset_left = 52.0
 offset_top = 10.0
 offset_right = 192.0
 offset_bottom = 34.0
-theme_override_colors/font_color = Color(0.0392157, 0.576471, 0.588235, 1)
+theme_override_colors/font_color = Color(0.580392, 0.823529, 0.741176, 1)
 theme_override_fonts/font = ExtResource("6_ibwwn")
 theme_override_font_sizes/font_size = 20
 text = "Go Home"
@@ -77,7 +77,7 @@ text = "Go Home"
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("13_607sn")
+texture = ExtResource("5_6ti53")
 
 [node name="EntryControl" type="Control" parent="."]
 layout_mode = 3
@@ -192,6 +192,7 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="EntryZoom/ExitIcon"]
+layout_mode = 0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
@@ -250,6 +251,7 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PicnicZoom/ExitIcon"]
+layout_mode = 0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
@@ -308,6 +310,7 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="BenchZoom/ExitIcon"]
+layout_mode = 0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
@@ -499,6 +502,7 @@ script = ExtResource("5_2niwr")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="FindZoom/ExitIcon"]
+layout_mode = 0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
