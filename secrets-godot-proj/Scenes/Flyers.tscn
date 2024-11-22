@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtspcatk56tfn"]
+[gd_scene load_steps=9 format=3 uid="uid://dtspcatk56tfn"]
 
 [ext_resource type="Script" path="res://Scripts/flyers.gd" id="1_jcoq1"]
 [ext_resource type="Texture2D" uid="uid://mis7b82jq7mi" path="res://Arts/funeral_flyers.png" id="1_s0sk5"]
 [ext_resource type="Script" path="res://Scripts/exit_icon.gd" id="2_0wwgb"]
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="3_81ahi"]
+[ext_resource type="Texture2D" uid="uid://bsga5covp28jn" path="res://Arts/arrow_right.png" id="3_sc1kb"]
+[ext_resource type="Script" path="res://Scripts/arrow_icons.gd" id="4_gu5q4"]
+[ext_resource type="Texture2D" uid="uid://bsk6fv7i3i2x1" path="res://Arts/arrow_left.png" id="5_nxrag"]
+[ext_resource type="AudioStream" uid="uid://deuwgqpjk1kb3" path="res://Audios/page_flip.wav" id="8_suckw"]
 
 [node name="Flyers" type="Control"]
 z_index = 1
@@ -22,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.0716667, 0.1, 0.682353)
+color = Color(0, 0.0716667, 0.1, 0.847059)
 
 [node name="Display" type="TextureRect" parent="."]
 layout_mode = 0
@@ -30,6 +34,22 @@ offset_right = 959.0
 offset_bottom = 539.0
 texture = ExtResource("1_s0sk5")
 stretch_mode = 5
+
+[node name="ArrowRight" type="TextureRect" parent="."]
+offset_left = 730.0
+offset_top = 250.0
+offset_right = 804.0
+offset_bottom = 332.0
+texture = ExtResource("3_sc1kb")
+script = ExtResource("4_gu5q4")
+
+[node name="ArrowLeft" type="TextureRect" parent="."]
+offset_left = 150.0
+offset_top = 251.0
+offset_right = 224.0
+offset_bottom = 333.0
+texture = ExtResource("5_nxrag")
+script = ExtResource("4_gu5q4")
 
 [node name="ExitIcon" type="Control" parent="."]
 layout_mode = 3
@@ -49,3 +69,6 @@ theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 0.713726)
 theme_override_fonts/font = ExtResource("3_81ahi")
 theme_override_font_sizes/font_size = 44
 text = "X"
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_suckw")
