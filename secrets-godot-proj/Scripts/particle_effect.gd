@@ -19,5 +19,4 @@ func move_to(destination):
 
 func _on_animation_finished(anime_name):
 	hide()
-	print("movement done")
 	emit_signal("effect_completed", anime_name)

@@ -29,7 +29,7 @@ func update_display(milestone_data):
 	
 	# temporarily hide action button
 	action_button.hide()
-	timer.wait_time = 3
+	timer.wait_time = 2
 	timer.start() # timer timeout will trigger button display
 	
 	show()

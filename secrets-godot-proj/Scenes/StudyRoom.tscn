@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://njuy78jabbgv"]
+[gd_scene load_steps=39 format=3 uid="uid://njuy78jabbgv"]
 
 [ext_resource type="Texture2D" uid="uid://b4dp33sk6677c" path="res://Arts/study_room.png" id="1_5g1kl"]
 [ext_resource type="Script" path="res://Scripts/study_room.gd" id="1_ph431"]
@@ -48,6 +48,42 @@ animations = [{
 "name": &"default",
 "speed": 3.0
 }]
+
+[sub_resource type="Animation" id="Animation_61h6p"]
+resource_name = "blink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlinkLight:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.960784, 1, 0.623529, 1), Color(0.623529, 1, 0.796078, 1), Color(0.960784, 1, 0.623529, 1), Color(0.623529, 1, 0.796078, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ysk4w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlinkLight:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.960784, 1, 0.623529, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tadm3"]
+_data = {
+"RESET": SubResource("Animation_ysk4w"),
+"blink": SubResource("Animation_61h6p")
+}
 
 [node name="StudyRoom" type="Node2D"]
 script = ExtResource("1_ph431")
@@ -286,6 +322,20 @@ offset_top = 334.0
 offset_right = 401.0
 offset_bottom = 413.0
 script = ExtResource("10_udi1g")
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ProjectorControl"]
+libraries = {
+"": SubResource("AnimationLibrary_tadm3")
+}
+
+[node name="BlinkLight" type="ColorRect" parent="ProjectorControl"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 64.0
+offset_right = 61.0
+offset_bottom = 68.0
+color = Color(0.960784, 1, 0.623529, 1)
 
 [node name="HoverRect" type="ColorRect" parent="ProjectorControl"]
 layout_mode = 1

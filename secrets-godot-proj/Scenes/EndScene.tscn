@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b3rkg6g1y33xd"]
+[gd_scene load_steps=39 format=3 uid="uid://b3rkg6g1y33xd"]
 
 [ext_resource type="FontFile" uid="uid://cthro4rqrdyu0" path="res://Fonts/press-start-2p-font/PressStart2P-vaV7.ttf" id="1_j31hf"]
 [ext_resource type="Script" path="res://Scripts/end_scene.gd" id="1_sknmn"]
@@ -26,8 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://bxepd4ktnpcrm" path="res://Arts/end_scene_files/computer_file_window16.png" id="18_b0deu"]
 [ext_resource type="Texture2D" uid="uid://8yn5lk0h001k" path="res://Arts/end_scene_files/computer_file_window17.png" id="19_teody"]
 [ext_resource type="Script" path="res://Scripts/end_letter_control.gd" id="20_dlcl1"]
-[ext_resource type="Texture2D" uid="uid://be630yplctmua" path="res://Arts/highlight_marker2.png" id="22_jijtn"]
-[ext_resource type="Texture2D" uid="uid://chw6j7s5i46bk" path="res://Arts/highlight_marker1.png" id="23_pqglx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vvbe"]
 animations = [{
@@ -90,23 +88,36 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qn2fx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_jijtn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_pqglx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 3.0
-}]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3j5du"]
 shader = ExtResource("3_fl57d")
 shader_parameter/fade_amount = 1.0
+
+[sub_resource type="Animation" id="Animation_hxex4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.0716667, 0.1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_jm1x5"]
 resource_name = "color_fade"
@@ -134,33 +145,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hxex4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorScreen:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0.0716667, 0.1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Text:theme_override_colors/default_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_275uj"]
@@ -259,11 +243,6 @@ offset_bottom = 230.0
 script = ExtResource("20_dlcl1")
 metadata/_edit_group_ = true
 
-[node name="HighlightIcon" type="AnimatedSprite2D" parent="Transition/LetterControl"]
-position = Vector2(97, 89)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_qn2fx")
-
 [node name="ColorScreen" type="ColorRect" parent="Transition"]
 layout_mode = 1
 anchors_preset = 15
@@ -275,6 +254,7 @@ color = Color(0, 0.0716667, 0.1, 1)
 
 [node name="Text" type="RichTextLabel" parent="Transition"]
 material = SubResource("ShaderMaterial_3j5du")
+layout_mode = 0
 offset_left = 38.0
 offset_top = 114.0
 offset_right = 915.0

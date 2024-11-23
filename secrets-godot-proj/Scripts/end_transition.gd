@@ -41,7 +41,7 @@ func _on_fade_out_finished(anime_name):
 
 
 func _on_scroll_finished():
-	letter_control.show_highlight()
+	letter_control.show()
 
 
 func _on_letter_clicked():

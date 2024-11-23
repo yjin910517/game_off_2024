@@ -233,6 +233,7 @@ func _on_dialogue_action_chosen(action_name):
 	if action_name == "projector":
 		
 		shield.show()
+		projector_control.blink()
 		projector.read_disk()
 		await get_tree().create_timer(1).timeout
 		_on_open_milestone("projector")
