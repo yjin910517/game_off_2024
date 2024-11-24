@@ -19,6 +19,7 @@ var current_line_idx = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	camera.connect("displayed_credit", Callable(self, "_on_displayed_credit"))
 	
 	line_list = [line_1, line_2, line_3, line_4, line_5]
 	for line in line_list:
@@ -55,3 +56,8 @@ func _on_timer_timeout():
 		
 		timer.wait_time = timer_time
 		timer.start()
+
+
+func _on_displayed_credit():
+	pass
+	# bgm.stop()
