@@ -56,7 +56,7 @@ func _on_leave_computer():
 # room to computer 
 func _on_open_computer():
 	computer.show()
-	audio.volume_db = -10
+	audio.volume_db = -6
 
 
 # end scene
